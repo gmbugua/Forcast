@@ -1,0 +1,127 @@
+:root {
+  // font family
+  --font-primary: Saira;
+  --font-secondary: Roboto;
+
+  // body font size
+  --text-base-size: 1em;
+
+  // type scale
+  --text-scale-ratio: 1.2;
+  --text-xs: calc((1em / var(--text-scale-ratio)) / var(--text-scale-ratio));
+  --text-sm: calc(var(--text-xs) * var(--text-scale-ratio));
+  --text-md: calc(
+    var(--text-sm) * var(--text-scale-ratio) * var(--text-scale-ratio)
+  );
+  --text-lg: calc(var(--text-md) * var(--text-scale-ratio));
+  --text-xl: calc(var(--text-lg) * var(--text-scale-ratio));
+  --text-xxl: calc(var(--text-xl) * var(--text-scale-ratio));
+  --text-xxxl: calc(var(--text-xxl) * var(--text-scale-ratio));
+  --text-xxxxl: calc(var(--text-xxxl) * var(--text-scale-ratio));
+
+  // line-height
+  --body-line-height: 1.4;
+  --heading-line-height: 1.2;
+
+  // capital letters - used in combo with the lhCrop mixin
+  --font-primary-capital-letter: 1;
+  --font-secondary-capital-letter: 1;
+}
+
+@supports (--css: variables) {
+  :root {
+    @include breakpoint(md) {
+      --text-base-size: 1.25em;
+      --text-scale-ratio: 1.25;
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+}
+
+body {
+  font-family: var(--font-primary);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-primary);
+  font-weight: 700;
+}
+
+// font family
+.font-primary {
+  font-family: var(--font-primary);
+}
+.font-secondary {
+  font-family: var(--font-secondary);
+}
+
+// color
+.color-secondary-darker {
+  color: alpha(var(--color-secondary-darker), var(--color-o, 1));
+}
+.color-secondary-dark {
+  color: alpha(var(--color-secondary-dark), var(--color-o, 1));
+}
+.color-secondary {
+  color: alpha(var(--color-secondary), var(--color-o, 1));
+}
+.color-secondary-light {
+  color: alpha(var(--color-secondary-light), var(--color-o, 1));
+}
+.color-secondary-lighter {
+  color: alpha(var(--color-secondary-lighter), var(--color-o, 1));
+}
+.color-tertiary-darker {
+  color: alpha(var(--color-tertiary-darker), var(--color-o, 1));
+}
+.color-tertiary-dark {
+  color: alpha(var(--color-tertiary-dark), var(--color-o, 1));
+}
+.color-tertiary {
+  color: alpha(var(--color-tertiary), var(--color-o, 1));
+}
+.color-tertiary-light {
+  color: alpha(var(--color-tertiary-light), var(--color-o, 1));
+}
+.color-tertiary-lighter {
+  color: alpha(var(--color-tertiary-lighter), var(--color-o, 1));
+}
+.color-quaternary-darker {
+  color: alpha(var(--color-quaternary-darker), var(--color-o, 1));
+}
+.color-quaternary-dark {
+  color: alpha(var(--color-quaternary-dark), var(--color-o, 1));
+}
+.color-quaternary {
+  color: alpha(var(--color-quaternary), var(--color-o, 1));
+}
+.color-quaternary-light {
+  color: alpha(var(--color-quaternary-light), var(--color-o, 1));
+}
+.color-quaternary-lighter {
+  color: alpha(var(--color-quaternary-lighter), var(--color-o, 1));
+}
+.color-quinary-darker {
+  color: alpha(var(--color-quinary-darker), var(--color-o, 1));
+}
+.color-quinary-dark {
+  color: alpha(var(--color-quinary-dark), var(--color-o, 1));
+}
+.color-quinary {
+  color: alpha(var(--color-quinary), var(--color-o, 1));
+}
+.color-quinary-light {
+  color: alpha(var(--color-quinary-light), var(--color-o, 1));
+}
+.color-quinary-lighter {
+  color: alpha(var(--color-quinary-lighter), var(--color-o, 1));
+}
