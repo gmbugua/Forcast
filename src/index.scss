@@ -1,4 +1,69 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Saira:wght@400;500;700&display=swap");
 
 :root {
+  /* breakpoints */
+  $breakpoints: (
+    "sm": 767px,
+    "md": 992px,
+    "lg": 1200px,
+  );
+
+  @mixin respond-to($breakpoint) {
+    // Retrieves the value from the key
+    $value: map-get($breakpoints, $breakpoint);
+
+    // If the key exists in the map
+    @if $value != null {
+      // Prints a media query based on the value
+      @media (min-width: $value) {
+        @content;
+      }
+    }
+
+    // If the key doesn't exist in the map
+    @else {
+      @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+            + "Please make sure it is defined in `$breakpoints` map.";
+    }
+  }
+
+  /* Typography */
+  $font-primary: "Saira", sans-serif;
+  $font-secondary: "Roboto", sans-serif;
+
+  /* set base values */
+  $text-base-size: 1em;
+  $text-scale-ratio: 1.2;
+
+  /* type scale */
+  --text-xs: (1em / ($text-scale-ratio * $text-scale-ratio));
+  --text-sm: (1em / $text-scale-ratio);
+  --text-md: 1em * $text-scale-ratio;
+  --text-lg: 1em * $text-scale-ratio * $text-scale-ratio;
+
+  /* color scheme*/
+  --gunmetal: #143642;
+  --darkCyan: #0f8b8d;
+  --carrot: #ec9a29;
+  --carnelian: #a8201a;
+  --yellow: #ffb900;
+
+  /* greyscale */
+  --black: #212529;
+  --grey: #e9ecef;
+  --almostWhite: #f8f9fa;
+  --white: #ffff;
+}
+
+@include respond-to(md) {
+  :root {
+    --text-base-size: 1.25em;
+    --text-scale-ratio: 1.25;
+  }
+}
+
+body {
+  font-size: var(--text-base-size);
+  font-family: var(--font-primary);
+  color: var(--gunmetal);
 }
