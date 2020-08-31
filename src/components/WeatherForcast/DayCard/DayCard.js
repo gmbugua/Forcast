@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
 
 function DayCard() {
-    return (
-        
-    )
+  return (
+    <div>
+      <h4>Day</h4>
+      <h3>Degrees</h3>
+    </div>
+  );
 }
 
-export default DayCard
+export default DayCard;
