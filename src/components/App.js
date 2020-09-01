@@ -1,23 +1,9 @@
 import React from "react";
-import Wrapper from "./Wrapper";
+import DayCard from "./WeatherForcast/DayCard";
 import styles from "./App.module.scss";
 
-function App() {
-  return (
-    <Wrapper>
-      <div className={styles.container}>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </Wrapper>
-  );
+export default class App extends React.Component {
+  render() {
+    return <DayCard />;
+  }
 }
-
-export default App;

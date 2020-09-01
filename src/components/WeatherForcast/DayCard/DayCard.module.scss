@@ -1,0 +1,38 @@
+@import "../../../custom_styles/index.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+  color: var(--white);
+  font-family: var(--font-secondary);
+
+  width: 140px;
+  height: 200px;
+  border-radius: 10px;
+  background-color: var(--darkCyan);
+  box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.25);
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--carrot);
+    transition: linear 0.2s;
+  }
+}
+
+.day {
+  margin: 0 auto;
+  font-size: var(--text-lg);
+}
+
+.icon {
+  flex: 1;
+}
+
+.degrees {
+  margin: 0 auto;
+  font-size: var(--text-xxl);
+}
