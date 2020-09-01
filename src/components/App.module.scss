@@ -1,4 +1,4 @@
-@import "../custom_styles/mixins";
+@import "../custom_styles/index.scss";
 
 //here's where we use the grid mixins
 .container {
@@ -6,13 +6,24 @@
   grid-auto-rows: 200px;
 
   @media only screen and (min-width: 700px) {
-    @include gridLayout((7, 4), (5, 2), (5, 2), (12, 2));
+    @include gridLayout(
+      (12, 1),
+      (12, 1),
+      (12, 1),
+      (2, 1),
+      (2, 1),
+      (2, 1),
+      (2, 1),
+      (2, 1),
+      (2, 1)
+    );
   }
 }
 
 .container {
-  max-width: 1000px;
-  margin: 0 auto;
+  flex: 1;
+  max-width: 100%;
+  margin: auto;
 
   > div:nth-of-type(1) {
     padding: var(--space-lg);
@@ -30,6 +41,31 @@
   }
 
   > div:nth-of-type(4) {
+    padding: var(--space-lg);
+    background-color: var(--grey);
+  }
+
+  > div:nth-of-type(5) {
+    padding: var(--space-lg);
+    background-color: var(--grey);
+  }
+
+  > div:nth-of-type(6) {
+    padding: var(--space-lg);
+    background-color: var(--grey);
+  }
+
+  > div:nth-of-type(7) {
+    padding: var(--space-lg);
+    background-color: var(--grey);
+  }
+
+  > div:nth-of-type(8) {
+    padding: var(--space-lg);
+    background-color: var(--grey);
+  }
+
+  > div:nth-of-type(9) {
     padding: var(--space-lg);
     background-color: var(--grey);
   }
