@@ -1,0 +1,47 @@
+@import "../custom_styles/mixins";
+
+//here's where we use the grid mixins
+.container {
+  @include grid;
+  grid-auto-rows: 200px;
+
+  @media only screen and (min-width: 700px) {
+    @include gridLayout((7, 4), (5, 2), (5, 2), (12, 2));
+  }
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+
+  > div:nth-of-type(1) {
+    padding: var(--space-lg);
+    background-color: var(--grey);
+  }
+
+  > div:nth-of-type(2) {
+    padding: var(--space-lg);
+    background-color: var(--grey);
+  }
+
+  > div:nth-of-type(3) {
+    padding: var(--space-lg);
+    background-color: var(--grey);
+  }
+
+  > div:nth-of-type(4) {
+    padding: var(--space-lg);
+    background-color: var(--grey);
+  }
+
+  > div:not(:first-of-type) {
+    color: var(--gunmetal);
+  }
+
+  > div {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

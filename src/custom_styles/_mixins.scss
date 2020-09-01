@@ -26,8 +26,10 @@ $breakpoints: (
 
 /* Grid and Layout */
 
-$gap-horizontal: 10px;
+//grid gap
+$gap-horizontal: 20px;
 $gap-vertical: $gap-horizontal;
+$grid-columns: 12;
 
 @mixin grid {
   @supports (grid-area: auto) {

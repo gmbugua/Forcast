@@ -1,10 +1,11 @@
 :root {
-  --font-primary: sans-serif;
-  --font-secondary: serif;
+  --font-primary: "Saira", sans-serif;
+  --font-secondary: "Roboto", sans-serif;
 
   /* set base values */
   --text-base-size: 1em;
   --text-scale-ratio: 1.2;
+  --text-base-weight: 400;
 
   /* type scale */
   --text-xs: calc(1em / (var(--text-scale-ratio) * var(--text-scale-ratio)));
@@ -28,11 +29,4 @@
   /* line-height */
   --heading-line-height: 1.2;
   --body-line-height: 1.4;
-}
-
-@include respond-to(md) {
-  :root {
-    --text-base-size: 1.25em;
-    --text-scale-ratio: 1.25;
-  }
 }

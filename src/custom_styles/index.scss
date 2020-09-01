@@ -1,8 +1,16 @@
+@import "_mixins";
 @import "_colors";
 @import "_spacing";
-@import "_mixins";
 @import "_typography";
+@import "_icons";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Saira:wght@400;500;700&display=swap");
+
+@include respond-to(md) {
+  :root {
+    --text-base-size: 1.25em;
+    --text-scale-ratio: 1.25;
+  }
+}
 
 body {
   font-size: var(--text-base-size);
@@ -16,6 +24,7 @@ h3,
 h4,
 form legend {
   color: var(--gunmetal);
+  font-weight: var(--text-base-weight);
   margin-bottom: var(--space-xxs);
   line-height: var(--heading-line-height);
 }
@@ -55,6 +64,8 @@ small {
 }
 
 p {
+  font-size: var(--text-sm);
+  font-family: var(--font-primary);
   line-height: var(--body-line-height);
 }
 
@@ -68,7 +79,7 @@ a {
 
 b,
 strong {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .text-container {
