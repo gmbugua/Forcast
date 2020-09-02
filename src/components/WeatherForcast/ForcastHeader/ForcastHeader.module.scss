@@ -2,11 +2,11 @@
 
 .container {
   @include text-container;
-}
 
-p {
-  color: var(--darkCyan);
-  margin: 5px 0px 0px 0px;
-  font-size: var(--text-md);
-  font-family: var(--font-secondary);
+  > p {
+    color: var(--darkCyan);
+    margin: 5px 0px 0px 0px;
+    font-size: var(--text-md);
+    font-family: var(--font-secondary);
+  }
 }

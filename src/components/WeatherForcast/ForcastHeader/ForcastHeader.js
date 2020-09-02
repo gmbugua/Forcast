@@ -4,7 +4,7 @@ import styles from "./ForcastHeader.module.scss";
 
 const ForcastHeader = (props) => {
   return (
-    <div className={styles.ForcastHeader}>
+    <div className={styles.container}>
       <h2>
         {props.city}
         {props.state != "" ? ", " : ""}
