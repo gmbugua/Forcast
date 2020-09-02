@@ -1,3 +1,47 @@
+@mixin text-container {
+  h1,
+  h2,
+  h3,
+  h4 {
+    // margin-top: var(--space-xs);
+    margin: 0 auto;
+  }
+
+  ul,
+  ol,
+  p {
+    // margin-bottom: var(--space-xs);
+    margin: 0 auto;
+  }
+
+  ul,
+  ol {
+    list-style-position: outside;
+    padding-left: 24px;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  ul li,
+  ol li {
+    line-height: var(--body-line-height);
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  u {
+    text-decoration: underline;
+  }
+}
+
 /* breakpoints */
 $breakpoints: (
   "sm": 542px,
