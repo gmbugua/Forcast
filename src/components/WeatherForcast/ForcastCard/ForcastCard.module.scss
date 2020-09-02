@@ -4,10 +4,11 @@
   flex-direction: column;
   box-sizing: border-box;
 
-  max-width: 400px;
+  max-width: 300px;
   max-height: 150px;
 
   border: 1px solid #e9ecef;
+  border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
   background-color: var(--white);
 
@@ -16,7 +17,22 @@
     display: flex;
     justify-content: space-between;
     > p {
-      margin: 0;
+      color: var(--gunmetal);
+      font-size: var(--text-sm);
+      margin: 10px 15px 10px 15px;
     }
+  }
+}
+
+@media (max-width: map-get($breakpoints, "sm")) {
+  .list {
+    max-width: 200px;
+    transition: 0.4s ease-in-out;
+  }
+}
+
+@media (min-width: map-get($breakpoints, "sm")) {
+  .list {
+    transition: 0.4s ease-in-out;
   }
 }
