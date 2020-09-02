@@ -4,6 +4,6 @@ import DayCard from "./WeatherForcast/DayCard/DayCard";
 
 export default class App extends React.Component {
   render() {
-    return <DayCard />;
+    return <ForcastCard />;
   }
 }

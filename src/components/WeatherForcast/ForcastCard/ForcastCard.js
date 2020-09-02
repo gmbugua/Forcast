@@ -5,17 +5,17 @@ import styles from "./ForcastCard.module.scss";
 const ForcastCard = (props) => {
   return (
     <div className={styles.list}>
-      <div className={styles.item}>
+      <div>
         <p>Wind</p>
         <p>{props.wind} mph</p>
       </div>
 
-      <div className={styles.item}>
+      <div>
         <p>Humidity</p>
         <p>{props.humidity} %</p>
       </div>
 
-      <div className={styles.item}>
+      <div>
         <p>Precipitation</p>
         <p>{props.precipitation} %</p>
       </div>
