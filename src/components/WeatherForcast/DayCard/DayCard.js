@@ -7,7 +7,7 @@ import styles from "./DayCard.module.scss";
 const DayCard = (props) => {
   return (
     <div className={styles.container}>
-      <div className="text-container">
+      <div>
         <p className={styles.day}>{props.day}</p>
       </div>
       <div>
@@ -17,7 +17,7 @@ const DayCard = (props) => {
           size={"5em"}
         />
       </div>
-      <div className="text-container">
+      <div>
         <p className={styles.degrees}>
           {props.temperature} °{props.units ? "F" : "C"}
         </p>
