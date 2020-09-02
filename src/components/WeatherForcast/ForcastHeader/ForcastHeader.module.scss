@@ -1,12 +1,34 @@
 @import "../../../custom_styles/index.scss";
 
+$text-margins: 5px 0px 0px 0px;
+
 .container {
   @include text-container;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 100%;
+
+  > h2 {
+    margin: $text-margins;
+  }
 
   > p {
     color: var(--darkCyan);
-    margin: 5px 0px 0px 0px;
+    margin: $text-margins;
     font-size: var(--text-md);
     font-family: var(--font-secondary);
+  }
+}
+
+@media (max-width: map-get($breakpoints, "sm")) {
+  .container {
+    transition: 0.5s linear;
+  }
+}
+
+@media (min-width: map-get($breakpoints, "sm")) {
+  .container {
+    transition: 0.5s linear;
   }
 }
