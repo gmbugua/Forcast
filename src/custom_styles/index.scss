@@ -81,16 +81,19 @@ strong {
 }
 
 .text-container {
+  h1,
   h2,
   h3,
   h4 {
-    margin-top: var(--space-sm);
+    // margin-top: var(--space-xs);
+    margin: 0 auto;
   }
 
   ul,
   ol,
   p {
-    margin-bottom: var(--space-md);
+    // margin-bottom: var(--space-xs);
+    margin: 0 auto;
   }
 
   ul,

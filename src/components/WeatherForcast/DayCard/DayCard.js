@@ -1,23 +1,36 @@
 import React from "react";
 import styles from "./DayCard.module.scss";
-import { ReactComponent as WeatherIcon } from "../../../assets/weatherIcons/clear-cloudy.svg";
+import PropTypes from "prop-types";
+import Icon from "../../Icon/Icon";
 
-function DayCard(props) {
-  const day = props.day || "Day";
-  const degrees = props.temperature || "N/A°";
+const DayCard = (props) => {
   return (
     <div className={styles.container}>
-      <div>
-        <p className={styles.day}>{day}</p>
+      <div className="text-container">
+        <p className={styles.day}>{props.day}</p>
       </div>
       <div>
-        <WeatherIcon />
+        <Icon
+          className={styles.icon}
+          name="isolated-thunderstroms"
+          size={"5em"}
+        />
       </div>
-      <div>
-        <p className={styles.degrees}>{degrees}</p>
+      <div className="text-container">
+        <p className={styles.degrees}>{props.temperature}</p>
       </div>
     </div>
   );
-}
+};
+
+DayCard.propTypes = {
+  day: PropTypes.string.isRequired,
+  temperature: PropTypes.string.isRequired,
+};
+
+DayCard.defaultProps = {
+  day: "Day",
+  temperature: "0°",
+};
 
 export default DayCard;

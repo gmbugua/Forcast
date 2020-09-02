@@ -4,6 +4,6 @@ import styles from "./App.module.scss";
 
 export default class App extends React.Component {
   render() {
-    return <DayCard />;
+    return <DayCard day="Wednesday" temperature="120°" />;
   }
 }
