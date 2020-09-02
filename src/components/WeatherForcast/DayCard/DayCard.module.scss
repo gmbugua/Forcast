@@ -37,6 +37,12 @@
   }
 }
 
+@media (min-width: map-get($breakpoints, "sm")) {
+  .container {
+    transition: 0.4s ease-in-out;
+  }
+}
+
 .day {
   font-size: var(--text-md);
 }
