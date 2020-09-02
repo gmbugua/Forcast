@@ -1,9 +1,12 @@
 import React from "react";
-import ForcastCard from "./WeatherForcast/ForcastCard/ForcastCard";
+
+// Weather Forcast Imports => WeatherForcast.js
 import DayCard from "./WeatherForcast/DayCard/DayCard";
+import ForcastCard from "./WeatherForcast/ForcastCard/ForcastCard";
+import ForcastHeader from "./WeatherForcast/ForcastHeader/ForcastHeader";
 
 export default class App extends React.Component {
   render() {
-    return <ForcastCard />;
+    return <ForcastHeader city="Santa Rosa" state="CA" />;
   }
 }

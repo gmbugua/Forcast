@@ -49,8 +49,8 @@ $breakpoints: (
   "lg": 992px,
 );
 
-@mixin clean-transition($breakpoint, $maxWidth) {
-}
+// @mixin clean-transition($breakpoint, $maxWidth) {
+// }
 
 @mixin respond-to($breakpoint) {
   // Retrieves the value from the key

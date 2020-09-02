@@ -27,12 +27,12 @@
 @media (max-width: map-get($breakpoints, "sm")) {
   .list {
     max-width: 200px;
-    transition: 0.4s ease-in-out;
+    transition: 1s ease-in-out;
   }
 }
 
 @media (min-width: map-get($breakpoints, "sm")) {
   .list {
-    transition: 0.4s ease-in-out;
+    transition: 0.6s ease-in-out;
   }
 }
