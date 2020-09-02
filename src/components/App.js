@@ -1,9 +1,9 @@
 import React from "react";
-import DayCard from "./WeatherForcast/DayCard";
-import styles from "./App.module.scss";
+import ForcastCard from "./WeatherForcast/ForcastCard/ForcastCard";
+import DayCard from "./WeatherForcast/DayCard/DayCard";
 
 export default class App extends React.Component {
   render() {
-    return <DayCard day="Wednesday" temperature="120°" />;
+    return <DayCard temperature={100} />;
   }
 }

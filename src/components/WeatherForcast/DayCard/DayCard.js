@@ -1,7 +1,8 @@
 import React from "react";
-import styles from "./DayCard.module.scss";
 import PropTypes from "prop-types";
+
 import Icon from "../../Icon/Icon";
+import styles from "./DayCard.module.scss";
 
 const DayCard = (props) => {
   return (
@@ -17,7 +18,9 @@ const DayCard = (props) => {
         />
       </div>
       <div className="text-container">
-        <p className={styles.degrees}>{props.temperature}</p>
+        <p className={styles.degrees}>
+          {props.temperature} °{props.units ? "F" : "C"}
+        </p>
       </div>
     </div>
   );
@@ -25,12 +28,14 @@ const DayCard = (props) => {
 
 DayCard.propTypes = {
   day: PropTypes.string.isRequired,
-  temperature: PropTypes.string.isRequired,
+  units: PropTypes.bool.isRequired,
+  temperature: PropTypes.number.isRequired,
 };
 
 DayCard.defaultProps = {
   day: "Day",
-  temperature: "0°",
+  units: true,
+  temperature: 0,
 };
 
 export default DayCard;

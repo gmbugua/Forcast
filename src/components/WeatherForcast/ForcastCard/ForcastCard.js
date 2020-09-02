@@ -1,9 +1,20 @@
-import React from 'react'
+import React from "react";
+import PropTypes from "prop-types";
 
-function ForcastCard() {
-    return (
-        
-    )
-}
+const ForcastCard = (props) => {
+  return <div></div>;
+};
 
-export default ForcastCard
+ForcastCard.propTypes = {
+  wind: PropTypes.number.isRequired,
+  humidity: PropTypes.number.isRequired,
+  precipitation: PropTypes.number.isRequired,
+};
+
+ForcastCard.defaultProps = {
+  wind: 2,
+  humidity: 2,
+  precipitation: 93,
+};
+
+export default ForcastCard;

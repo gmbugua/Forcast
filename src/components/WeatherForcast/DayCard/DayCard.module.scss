@@ -2,14 +2,12 @@
 
 .container {
   display: flex;
-  max-width: 175px;
-  max-height: 271px;
+  max-width: 180px;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 
   color: var(--gunmetal);
-  // text-align: center;
   font-family: var(--font-secondary);
 
   border-color: var(--grey);
@@ -32,16 +30,23 @@
   }
 }
 
+@media (max-width: map-get($breakpoints, "sm")) {
+  .container {
+    max-width: 140px;
+    transition: 0.4s ease-in-out;
+  }
+}
+
 .day {
   font-size: var(--text-md);
 }
 
 .icon {
-  background-color: white;
   border-radius: 10px;
+  background-color: white;
   box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.25);
 }
 
 .degrees {
-  font-size: var(--text-xxxl);
+  font-size: var(--text-xxl);
 }
