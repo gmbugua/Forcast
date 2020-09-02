@@ -5,7 +5,7 @@
 @import "_icons";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Saira:wght@400;500;700&display=swap");
 
-@include respond-to(md) {
+@include respond-to(sm) {
   :root {
     --text-base-size: 1.25em;
     --text-scale-ratio: 1.25;

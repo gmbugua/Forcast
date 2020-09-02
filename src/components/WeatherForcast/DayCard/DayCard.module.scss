@@ -1,10 +1,15 @@
 @import "../../../custom_styles/index.scss";
 
 .container {
+  display: flex;
   max-width: 175px;
+  max-height: 271px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 
   color: var(--gunmetal);
-  text-align: center;
+  // text-align: center;
   font-family: var(--font-secondary);
 
   border-color: var(--grey);
