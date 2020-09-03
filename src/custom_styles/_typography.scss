@@ -26,6 +26,13 @@
       var(--text-scale-ratio)
   );
 
+  --text-xxxxl: calc(
+    1em * var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio)
+  );
+
   /* line-height */
   --heading-line-height: 1.2;
   --body-line-height: 1.4;

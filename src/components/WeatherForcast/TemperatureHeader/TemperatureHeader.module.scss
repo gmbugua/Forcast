@@ -1,0 +1,57 @@
+@import "../../../custom_styles/index.scss";
+
+.container {
+  @include text-container;
+  display: flex;
+  align-items: center;
+  max-width: 400px;
+
+  // background-color: var(--gunmetal);
+
+  > div {
+    flex: 1;
+    padding: 0.1em;
+    margin: 5px;
+    button {
+      display: inline-flex;
+      font-family: var(--font-primary);
+      background-color: transparent;
+      border-color: transparent;
+      h1 {
+        color: var(--gunmetal);
+        font-size: var(--text-xxxxl);
+      }
+    }
+
+    h1:nth-child(2) {
+      color: var(--carrot);
+      margin-left: 0.25em;
+    }
+  }
+}
+
+.icon {
+  max-width: 200px;
+}
+
+$smoothTransit: 0.6s ease-in-out;
+
+@media (max-width: map-get($breakpoints, "sm")) {
+  .container {
+    max-width: 200px;
+    transition: $smoothTransit;
+  }
+  .icon {
+    max-width: 140px;
+    transition: $smoothTransit;
+  }
+}
+
+@media (min-width: map-get($breakpoints, "sm")) {
+  .container {
+    transition: $smoothTransit;
+  }
+  .icon {
+    transition: $smoothTransit;
+  }
+}
