@@ -7,6 +7,6 @@ import ForcastHeader from "./WeatherForcast/ForcastHeader/ForcastHeader";
 
 export default class App extends React.Component {
   render() {
-    return <ForcastHeader city="Mooselookmeguntic" state="CA" />;
+    return <ForcastHeader city="Santa Rosa" state="CA" />;
   }
 }
