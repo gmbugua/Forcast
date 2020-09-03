@@ -47,15 +47,17 @@
   font-size: var(--text-xxl);
 }
 
+$smoothTransit: 0.4s ease-in-out;
+
 @media (max-width: map-get($breakpoints, "sm")) {
   .container {
     max-width: 140px;
-    transition: 0.4s ease-in-out;
+    transition: $smoothTransit;
   }
 }
 
 @media (min-width: map-get($breakpoints, "sm")) {
   .container {
-    transition: 0.4s ease-in-out;
+    transition: $smoothTransit;
   }
 }
