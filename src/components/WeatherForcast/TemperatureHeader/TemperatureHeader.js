@@ -6,7 +6,7 @@ import styles from "./TemperatureHeader.module.scss";
 import { useWindowSize } from "../../../utility/Hooks";
 
 const TemperatureHeader = (props) => {
-  const { width, height } = useWindowSize();
+  const { width } = useWindowSize();
   return (
     <div className={styles.container}>
       <div className={styles.icon}>

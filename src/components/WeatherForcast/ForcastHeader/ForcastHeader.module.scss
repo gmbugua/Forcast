@@ -19,16 +19,12 @@ $text-margins: 5px 0px 0px 0px;
     font-size: var(--text-md);
     font-family: var(--font-secondary);
   }
-}
 
-@media (max-width: map-get($breakpoints, "sm")) {
-  .container {
+  @media (max-width: map-get($breakpoints, "sm")) {
     transition: 0.5s linear;
   }
-}
 
-@media (min-width: map-get($breakpoints, "sm")) {
-  .container {
+  @media (min-width: map-get($breakpoints, "sm")) {
     transition: 0.5s linear;
   }
 }

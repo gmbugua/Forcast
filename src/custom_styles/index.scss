@@ -9,6 +9,7 @@
   :root {
     --text-base-size: 1.25em;
     --text-scale-ratio: 1.25;
+    --smoothTransit: 0.6s ease-in-out;
   }
 }
 
@@ -86,4 +87,19 @@ strong {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.wrapper {
+  margin: var(--space-xl);
+  padding: var(--space-lg);
+  background-color: #ffff;
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: map-get($breakpoints, "sm")) {
+    transition: var(--smoothTransit);
+  }
+
+  @media (min-width: map-get($breakpoints, "sm")) {
+    transition: var(--smoothTransit);
+  }
 }
