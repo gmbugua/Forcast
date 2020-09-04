@@ -15,13 +15,13 @@ const Load = (props) => {
     <div className={styles.content_wrapper}>
       <Loader
         type="Bars"
-        color="#143642"
+        color="#ec9a29"
         height={height}
         width={props.width}
         visible={true}
         className={styles.loader}
       />
-      <Icon className={styles.logo} name="Logo" size="10em" color="#a8201a" />
+      <Icon className={styles.logo} name="Logo" size="5em" />
     </div>
   );
 };
