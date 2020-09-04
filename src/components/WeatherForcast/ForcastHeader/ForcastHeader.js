@@ -7,7 +7,7 @@ const ForcastHeader = (props) => {
     <div className={styles.container}>
       <h2>
         {props.city}
-        {props.state != "" ? ", " : ""}
+        {props.state !== "" ? ", " : ""}
         {props.state}
       </h2>
       <p>

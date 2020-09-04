@@ -1,40 +1,27 @@
 import React from "react";
 import PropType from "prop-types";
 import { useWindowSize } from "../../utility/Hooks";
+import Icon from "../Icon/Icon.js";
 import Loader from "react-loader-spinner";
-
 import styles from "./Load.module.scss";
 
 const Load = (props) => {
-  const { width, height } = useWindowSize();
-  let { w, h } = props;
-  h = width > 542 ? props.height : (props.width * (542 - props.width)) / 542;
+  const { width } = useWindowSize();
+  let height =
+    width > 542
+      ? props.height
+      : (props.width * (542 - props.width)) / props.width;
   return (
     <div className={styles.content_wrapper}>
       <Loader
-        className={styles.container}
-        type="Circles"
-        color="#0f8b8d"
-        height={h}
+        type="Bars"
+        color="#143642"
+        height={height}
         width={props.width}
         visible={true}
+        className={styles.loader}
       />
-      <Loader
-        className={styles.container}
-        type="Rings"
-        color="#0f8b8d"
-        height={h}
-        width={props.width}
-        visible={true}
-      />
-      <Loader
-        className={styles.container}
-        type="Hearts"
-        color="#0f8b8d"
-        height={h}
-        width={props.width}
-        visible={true}
-      />
+      <Icon className={styles.logo} name="Logo" size="10em" color="#a8201a" />
     </div>
   );
 };

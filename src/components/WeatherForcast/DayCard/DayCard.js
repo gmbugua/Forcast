@@ -15,7 +15,7 @@ const DayCard = (props) => {
       </div>
       <div>
         <p className={styles.degrees}>
-          {props.temperature} °{props.units == "Fahreneit" ? "F" : "C"}
+          {props.temperature} °{props.units === "Fahreneit" ? "F" : "C"}
         </p>
       </div>
     </div>
