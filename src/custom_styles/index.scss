@@ -9,7 +9,7 @@
   :root {
     --text-base-size: 1.25em;
     --text-scale-ratio: 1.25;
-    --smoothTransit: 0.6s ease-in-out;
+    --smoothTransit: 0.7s ease-in-out;
   }
 }
 
@@ -89,6 +89,7 @@ strong {
   white-space: nowrap;
 }
 
+// EXTEND THIS CLASS DO NOT MODIFY!!!
 .wrapper {
   margin: var(--space-xl);
   padding: var(--space-lg);
