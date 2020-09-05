@@ -1,0 +1,38 @@
+@import "../../../custom_styles/index.scss";
+
+a {
+  color: var(--gunmetal);
+  text-decoration: none;
+  > p {
+    margin: 0;
+    color: var(--gunmetal);
+    text-align: center;
+  }
+  &:hover {
+    > p {
+      color: var(--carrot);
+    }
+  }
+}
+
+.container {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 100%;
+  max-height: 30px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (max-width: map-get($breakpoints, "sm")) {
+    transition: 0.5s linear;
+  }
+}
+
+.backBtn {
+  display: flex;
+  flex-direction: column;
+}

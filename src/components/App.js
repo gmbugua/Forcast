@@ -6,10 +6,11 @@ import React from "react";
 // import ForcastCard from "./WeatherForcast/ForcastCard";
 // import TemperatureHeader from "./WeatherForcast/TemperatureHeader";
 // import ForcastHeader from "./WeatherForcast/ForcastHeader";
-import TemperatureChart from "./WeatherForcast/TemperatureChart";
+// import TemperatureChart from "./WeatherForcast/TemperatureChart";
+import WeatherForcast from "./WeatherForcast";
 
 export default class App extends React.Component {
   render() {
-    return <TemperatureChart />;
+    return <WeatherForcast />;
   }
 }
