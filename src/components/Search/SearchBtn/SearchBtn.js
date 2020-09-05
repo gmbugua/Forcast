@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function SearchBtn() {
-    return (
-        
-    )
-}
+const SearchBtn = () => {
+  return <div></div>;
+};
 
-export default SearchBtn
+export default SearchBtn;
