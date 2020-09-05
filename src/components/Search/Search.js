@@ -4,17 +4,17 @@ import SearchBar from "./SearchBar";
 import SearchBtn from "./SearchBtn";
 import PropTypes from "prop-types";
 
+import styles from "./Search.module.scss";
+
 export default class Search extends Component {
   render() {
     return (
-      <div>
+      <div className={styles.container}>
         <div>
-          <Icon name="Logo" size="12em" />
+          <Icon className={styles.logo} name="Logo" size="12em" />
         </div>
         <div>
           <SearchBar />
-        </div>
-        <div>
           <SearchBtn />
         </div>
       </div>
