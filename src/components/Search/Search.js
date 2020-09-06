@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Icon from "../Icon/Icon";
 import SearchBar from "./SearchBar";
-import SearchBtn from "./SearchBtn";
+import Button from "../Button";
 import PropTypes from "prop-types";
 
 import styles from "./Search.module.scss";
@@ -15,7 +15,7 @@ export default class Search extends Component {
         </div>
         <div>
           <SearchBar />
-          <SearchBtn />
+          <Button />
         </div>
       </div>
     );
