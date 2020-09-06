@@ -3,33 +3,9 @@
 //here's where we use the grid mixins
 .container {
   @extend .wrapper;
-  @include grid;
-  grid-auto-rows: 200px;
-
-  @media only screen and (min-width: 700px) {
-    @include gridLayout((12, 1), (12, 1));
-  }
-}
-
-.container {
-  max-width: 100%;
-
-  > div:nth-of-type(1) {
-    // background-color: var(--grey);
-  }
-
-  > div:nth-of-type(2) {
-    // background-color: var(--grey);
-  }
-
-  > div:not(:first-of-type) {
-    color: var(--gunmetal);
-  }
-
-  > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
 }

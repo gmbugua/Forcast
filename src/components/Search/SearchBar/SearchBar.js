@@ -1,11 +1,8 @@
 import React from "react";
+import styles from "./SearchBar.module.scss";
 
 const SearchBar = (props) => {
-  return (
-    <div>
-      <input></input>
-    </div>
-  );
+  return <input placeholder="Search by City or Zip Code" />;
 };
 
 export default SearchBar;

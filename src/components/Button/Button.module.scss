@@ -2,9 +2,10 @@
 
 .btn {
   @include text-container;
+  width: 150px;
+  cursor: pointer;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
   padding: 1em 2em 1em 2em;
   background-color: var(--gunmetal);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -20,4 +21,9 @@
   &:focus {
     outline: 0;
   }
+}
+
+.search {
+  margin-top: var(--space-xxxl);
+  margin-bottom: var(--space-xxxl);
 }
