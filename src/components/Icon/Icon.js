@@ -2,9 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import iconMap from "../../assets/icons/icon-map";
 
-const Icon = ({ name, size, color, ...rest }) => {
+const Icon = ({ name, size, color, fixSize, ...rest }) => {
   const Icon = iconMap[name];
-  return <Icon color={color} style={{ width: size, height: size }} {...rest} />;
+  return (
+    <Icon
+      color={color}
+      style={{
+        width: size,
+        height: size,
+      }}
+      {...rest}
+    />
+  );
 };
 
 Icon.propTypes = {

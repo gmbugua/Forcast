@@ -2,7 +2,7 @@ import React from "react";
 
 import Icon from "../Icon/Icon";
 import SearchBar from "./SearchBar";
-import Button from "../Button";
+import SearchBtn from "./SearchBtn";
 
 import styles from "./Search.module.scss";
 
@@ -10,9 +10,9 @@ export default class Search extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <Icon className={styles.logo} name="Logo" size="15em" />
+        <Icon className={styles.logo} name="Logo" size="50vh - 5vh" />
         <SearchBar />
-        <Button className={styles.searchBtn} label="search" type="search" />
+        <SearchBtn route="/forcast" />
       </div>
     );
   }

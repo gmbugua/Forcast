@@ -1,17 +1,25 @@
 @import "../../../custom_styles/index.scss";
 
-a {
+.backBtn {
+  @include text-container;
+  display: flex;
+  flex-direction: column;
   color: var(--gunmetal);
-  text-decoration: none;
+  border: none;
+  background-color: transparent;
   > p {
     margin: 0;
     color: var(--gunmetal);
+    font-size: var(--text-md);
     text-align: center;
   }
   &:hover {
     > p {
       color: var(--carrot);
     }
+  }
+  &:focus {
+    outline: 0;
   }
 }
 
@@ -30,9 +38,4 @@ a {
   @media (max-width: map-get($breakpoints, "sm")) {
     transition: 0.5s linear;
   }
-}
-
-.backBtn {
-  display: flex;
-  flex-direction: column;
 }

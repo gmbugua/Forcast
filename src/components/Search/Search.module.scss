@@ -4,8 +4,16 @@
 .container {
   @extend .wrapper;
   display: flex;
+  margin-top: 5vh;
+  width: 100% - 10%;
+  height: 100vh - 10vh;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   overflow: hidden;
+
+  @media (max-width: map-get($breakpoints, "sm")) {
+    height: 100vh - 18vh;
+    padding-top: var(--space-md);
+  }
 }

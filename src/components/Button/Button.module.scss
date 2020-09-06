@@ -2,7 +2,6 @@
 
 .btn {
   @include text-container;
-  width: 150px;
   cursor: pointer;
   border: none;
   border-radius: 5px;
@@ -21,9 +20,11 @@
   &:focus {
     outline: 0;
   }
-}
 
-.search {
-  margin-top: var(--space-xxxl);
-  margin-bottom: var(--space-xxxl);
+  @media (max-width: map-get($breakpoints, "sm")) {
+    p {
+      font-size: var(--text-md);
+      transition: 1s ease-in-out;
+    }
+  }
 }

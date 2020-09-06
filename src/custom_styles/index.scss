@@ -90,8 +90,8 @@ strong {
 
 // EXTEND THIS CLASS DO NOT MODIFY!!!
 .wrapper {
-  margin: var(--space-xl);
-  padding: var(--space-lg);
+  margin: 0 auto;
+  // padding: var(--space-lg);
   background-color: #ffff;
   box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
 
@@ -102,4 +102,9 @@ strong {
   @media (min-width: map-get($breakpoints, "sm")) {
     transition: var(--smoothTransit);
   }
+}
+
+.link {
+  cursor: pointer;
+  text-decoration: none;
 }
