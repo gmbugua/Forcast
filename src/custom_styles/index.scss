@@ -2,14 +2,13 @@
 @import "_colors";
 @import "_spacing";
 @import "_typography";
-@import "_icons";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Saira:wght@400;500;700&display=swap");
 
 @include respond-to(sm) {
   :root {
     --text-base-size: 1.25em;
     --text-scale-ratio: 1.25;
-    --smoothTransit: 0.6s ease-in-out;
+    --smoothTransit: 0.7s ease-in-out;
   }
 }
 
@@ -89,6 +88,7 @@ strong {
   white-space: nowrap;
 }
 
+// EXTEND THIS CLASS DO NOT MODIFY!!!
 .wrapper {
   margin: var(--space-xl);
   padding: var(--space-lg);

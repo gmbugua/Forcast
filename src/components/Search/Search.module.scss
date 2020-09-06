@@ -1,0 +1,11 @@
+@import "../../custom_styles/index.scss";
+
+//here's where we use the grid mixins
+.container {
+  @extend .wrapper;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
