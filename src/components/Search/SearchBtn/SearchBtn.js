@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import styles from "./SearchBtn.module.scss";
 
-function SearchBtn() {
-    return (
-        
-    )
-}
+const SearchBtn = () => {
+  return (
+    <button className={styles.btn}>
+      <p>search</p>
+    </button>
+  );
+};
 
-export default SearchBtn
+export default SearchBtn;
