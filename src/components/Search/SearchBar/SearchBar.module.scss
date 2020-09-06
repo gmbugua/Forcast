@@ -18,9 +18,4 @@ input {
   &:focus {
     outline: 0;
   }
-
-  @media (max-width: map-get($breakpoints, "sm")) {
-    max-width: 300px;
-    transition: 1s ease-in-out;
-  }
 }
