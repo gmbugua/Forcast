@@ -1,11 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
+
 import Icon from "../Icon/Icon";
 import SearchBar from "./SearchBar";
 import Button from "../Button";
 
 import styles from "./Search.module.scss";
 
-export default class Search extends Component {
+export default class Search extends React.Component {
   render() {
     return (
       <div className={styles.container}>
