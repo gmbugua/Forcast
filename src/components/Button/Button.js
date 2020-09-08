@@ -13,7 +13,7 @@ const Button = (props) => {
 
 Button.propTypes = {
   label: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
 };
 
 Button.defaultProps = {

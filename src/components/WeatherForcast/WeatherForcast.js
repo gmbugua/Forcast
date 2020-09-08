@@ -1,6 +1,5 @@
 import React from "react";
 import Nav from "./Nav";
-import PropTypes from "prop-types";
 import styles from "./WeatherForcast.module.scss";
 
 export default class WeatherForcast extends React.Component {
@@ -12,7 +11,6 @@ export default class WeatherForcast extends React.Component {
   }
   componentDidMount() {
     const location = this.props.location.state;
-    console.log(location);
   }
 
   render() {

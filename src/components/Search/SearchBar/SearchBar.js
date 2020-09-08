@@ -1,4 +1,6 @@
 import React from "react";
+
+// eslint-disable-next-line
 import styles from "./SearchBar.module.scss";
 
 const SearchBar = (props) => {
