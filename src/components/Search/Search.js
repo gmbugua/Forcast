@@ -9,13 +9,17 @@ import styles from "./Search.module.scss";
 class Search extends React.Component {
   constructor() {
     super();
-    this.state = { query: "" };
+    this.state = { query: "", error: false };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
     this.setState({ query: event.target.value });
   }
+
+  validate() {}
+
+  handleSubmit() {}
 
   render() {
     return (
