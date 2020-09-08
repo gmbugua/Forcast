@@ -2,38 +2,44 @@
 
 .backBtn {
   @include text-container;
-  display: flex;
-  flex-direction: column;
-  color: var(--gunmetal);
   border: none;
   background-color: transparent;
-  > p {
-    margin: 0;
-    color: var(--gunmetal);
-    font-size: var(--text-md);
-    text-align: center;
-  }
-  &:hover {
-    > p {
-      color: var(--carrot);
+
+  .backIcon {
+    width: 3em;
+    height: 2em;
+    @media (max-width: map-get($breakpoints, "sm")) {
+      transition: 0.5s linear;
     }
   }
+
+  > p {
+    margin: 0;
+    font-size: var(--text-md);
+  }
+
+  &:hover {
+    color: var(--gunmetal);
+    opacity: 0.3;
+    transition: 0.3s opacity;
+  }
+
   &:focus {
     outline: 0;
   }
 }
 
 .container {
-  margin: 0 auto;
-  padding: 20px;
-  max-width: 100%;
-  max-height: 30px;
-  overflow: hidden;
-
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  overflow: hidden;
+
+  .logo {
+    width: 7em;
+    height: 100%;
+  }
 
   @media (max-width: map-get($breakpoints, "sm")) {
     transition: 0.5s linear;

@@ -9,7 +9,14 @@ import styles from "./SearchBtn.module.scss";
 
 const SearchBtn = (props) => {
   return (
-    <Link className={cx("link", styles.link_spacing)} to={props.route}>
+    <Link
+      className={cx("link", styles.link_spacing)}
+      to={{
+        pathname: `${props.route}`,
+        state: {
+          query: props.searchQuery,
+        },
+      }}>
       <Button type="search" label="search" />
     </Link>
   );
@@ -17,6 +24,7 @@ const SearchBtn = (props) => {
 
 SearchBtn.propTypes = {
   route: PropTypes.string.isRequired,
+  searchQuery: PropTypes.string.isRequired,
 };
 
 SearchBtn.defaultProps = {

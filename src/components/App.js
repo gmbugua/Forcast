@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 // Weather Forcast Imports => WeatherForcast.js
 // import Load from "./Load";
@@ -11,15 +11,14 @@ import WeatherForcast from "./WeatherForcast";
 // import ForcastHeader from "./WeatherForcast/ForcastHeader";
 // import TemperatureChart from "./WeatherForcast/TemperatureChart";
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <Router>
-        <Switch>
-          <Route default path="/search" component={Search} />
-          <Route path="/forcast" component={WeatherForcast} />
-        </Switch>
-      </Router>
-    );
-  }
-}
+const App = () => {
+  return (
+    <Switch>
+      <Route exact path="/" render={() => <Search />} />
+      <Route path="/search" render={() => <Search />} />
+      <Route exact path="/forcast" component={WeatherForcast} />
+    </Switch>
+  );
+};
+
+export default App;

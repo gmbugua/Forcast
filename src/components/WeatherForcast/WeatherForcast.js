@@ -4,17 +4,16 @@ import PropTypes from "prop-types";
 import styles from "./WeatherForcast.module.scss";
 
 export default class WeatherForcast extends React.Component {
-  static propTypes = {
-    searchQuery: PropTypes.string.isRequired,
-  };
-
   constructor(props) {
     super(props);
     this.state = {
       forcast_data: {},
     };
   }
-  componentDidMount() {}
+  componentDidMount() {
+    const location = this.props.location.state;
+    console.log(location);
+  }
 
   render() {
     return <Nav />;
