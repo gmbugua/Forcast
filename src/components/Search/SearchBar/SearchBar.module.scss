@@ -2,7 +2,7 @@
 
 .search {
   @include text-container;
-  width: calc(100% - 50%);
+  width: calc(100% - 45%);
   height: 70px;
   box-sizing: border-box;
   background-color: var(--white);
@@ -16,6 +16,14 @@
   padding-left: 1em;
 
   &:focus {
-    outline: 0;
+    outline: 1;
   }
+}
+
+.errorBar {
+  outline-color: var(--carnelian);
+}
+
+.successBar {
+  outline-color: var(--darkCyan);
 }

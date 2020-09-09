@@ -5,7 +5,7 @@ import cx from "classnames";
 
 const Button = (props) => {
   return (
-    <button className={cx(styles.btn, styles[props.type])}>
+    <button {...props} className={cx(styles.btn, styles[props.type])}>
       <p>{props.label}</p>
     </button>
   );

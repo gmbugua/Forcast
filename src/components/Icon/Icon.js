@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import iconMap from "../../assets/icons/icon-map";
 
-const Icon = ({ name, size, color, fixSize, ...rest }) => {
+const Icon = ({ name, size, color, ...rest }) => {
   const Icon = iconMap[name];
   return <Icon color={color} {...rest} />;
 };
