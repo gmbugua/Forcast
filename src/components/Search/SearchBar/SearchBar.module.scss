@@ -1,6 +1,6 @@
 @import "../../../custom_styles/index.scss";
 
-input {
+.search {
   @include text-container;
   width: calc(100% - 50%);
   height: 70px;

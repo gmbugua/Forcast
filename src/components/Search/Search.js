@@ -1,22 +1,22 @@
 import React from "react";
 import cx from "classnames";
-import Button from "../Button";
+import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 
 import Icon from "../Icon/Icon";
 
 import styles from "./Search.module.scss";
 
-const cityList = require("../../utility/city.list.json");
+const cities_file = require("../../utility/city.list.json");
+const cities = [...cities_file];
 
 class Search extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
+      city: {},
+      error: false,
       query: "",
-      cityId: "",
-      cities: this.props.cityList,
-      validQuery: false,
     };
     this.changeHandler = this.changeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
@@ -26,44 +26,37 @@ class Search extends React.Component {
     this.setState({ query: event.target.value });
   }
 
-  findCityId() {
-    for (const cityObject of cityList) {
-      if (cityObject.name === this.state.query) {
-        return cityObject.id;
-      }
-    }
+  findCity() {
+    console.log(cities);
   }
 
-  submitHandler() {
-    const errorMessage = this.queryValidation();
+  submitHandler(event) {
+    this.findCity();
+    // event.preventDefault(); will stop navigation
   }
 
   render() {
     return (
-      <div className={styles.container}>
+      <form className={styles.container}>
         <Icon className={styles.logo} name="Logo" size="50vh - 5vh" />
-        <input
-          type="text"
-          className={styles.searchBar}
-          placeholder="Search by City or Zip Code"
-          value={this.state.value}
+        <SearchBar
+          name="name"
+          value={this.state.query}
+          placeholder={"Search by City or Zip Code"}
           onChange={this.changeHandler}
         />
         <Link
-          className={cx(
-            "link",
-            styles.link_spacing,
-            !this.state.validQuery && styles.link_disable
-          )}
+          className={cx("link", styles.link_spacing)}
           to={{
             pathname: "/forcast",
             state: {
-              cityId: this.state.cityId,
+              city: this.state.city,
             },
-          }}>
-          <Button label="search" />
+          }}
+          onClick={this.submitHandler}>
+          <input className={styles.searchBtn} type="submit" value="Search" />
         </Link>
-      </div>
+      </form>
     );
   }
 }
