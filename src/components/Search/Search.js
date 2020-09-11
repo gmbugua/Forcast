@@ -7,6 +7,12 @@ import Button from "../Button";
 import SearchBar from "./SearchBar";
 import styles from "./Search.module.scss";
 
+import cityList from "../../utility/cityList.json";
+import countryList from "../../utility/countryList.json";
+
+const cities = [...cityList];
+const countries = [...countryList];
+
 const HelperText = (props) => {
   if (props.error === "true") {
     return <p className={styles.errorText}>Incorrect Input format.</p>;
@@ -15,12 +21,11 @@ const HelperText = (props) => {
   } else {
     return (
       <p className={styles.helperText}>
-        Search by your city's name, spaces are welcome{" "}
+        Search by your City and Country, spaces are welcome{" "}
         <span role="img" aria-label="winky-face">
           😉
         </span>{" "}
         <br />
-        e.g. "Santa Rosa"
       </p>
     );
   }
@@ -32,16 +37,31 @@ class Search extends React.Component {
     this.state = {
       query: "",
       error: "",
-      cityId: "",
+      cityID: "",
+      countryCode: "",
     };
   }
+
+  getCityID = () => {
+    let id;
+    return [false, id];
+  };
+
+  getCountryCode = () => {
+    let code;
+    return [false, code];
+  };
 
   validate = (event) => {
     let error = "";
     let value = event.target.value;
+    let [foundCity, id] = this.getCityID;
+    let [foundCountry, code] = this.getCountryCode;
 
     if (value.length <= 0) {
-      error = "true";
+      if (foundCity && foundCountry) {
+        error = "true";
+      }
     } else {
       error = "false";
     }
@@ -56,7 +76,7 @@ class Search extends React.Component {
     });
   };
 
-  focusHandler = (event) => {
+  blurHandler = (event) => {
     this.setState({ error: "" });
   };
 
@@ -68,17 +88,23 @@ class Search extends React.Component {
           name="name"
           error={this.state.error}
           value={this.state.query}
-          placeholder={"Search by City"}
+          placeholder={"e.g. Santa Rosa, United States"}
           onChange={this.changeHandler}
-          onBlur={this.focusHandler}
+          onBlur={this.blurHandler}
         />
         <HelperText error={this.state.error} />
         <Link
-          className={cx("link", styles.link_spacing)}
+          className={cx(
+            "link",
+            styles.link_spacing,
+            (this.state.error === "true" || this.state.query === "") &&
+              styles.link_disable
+          )}
           to={{
             pathname: "/forcast",
             state: {
-              city: this.state.query,
+              id: this.state.cityID,
+              code: this.state.countryCode,
             },
           }}>
           <Button className={styles.searchBtn} type="submit" label="search" />
