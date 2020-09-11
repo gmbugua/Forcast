@@ -1,0 +1,23 @@
+.helperText {
+  color: #cdcdcd;
+  margin-top: var(--space-md);
+  text-align: center;
+  font-size: var(--text-sm);
+  font-family: var(--font-secondary);
+
+  &:hover {
+    color: var(--gunmetal);
+    transition: 0.3s color linear;
+  }
+}
+
+.errorText {
+  @extend .helperText;
+  color: var(--carnelian);
+  text-align: center;
+}
+.successText {
+  @extend .helperText;
+  color: var(--darkCyan);
+  text-align: center;
+}
