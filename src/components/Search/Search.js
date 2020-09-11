@@ -8,40 +8,24 @@ import SearchBar from "./SearchBar";
 import HelperText from "./HelperText";
 import styles from "./Search.module.scss";
 
-import cityList from "../../utility/cityList.json";
-import countryList from "../../utility/countryList.json";
-
-const cities = [...cityList];
-const countries = [...countryList];
-let getCityID = (query) => {
-  let id;
-  return [false, id];
-};
-
-let getCountryCode = () => {
-  let code;
-  return [false, code];
-};
-
 class Search extends React.Component {
   constructor() {
     super();
     this.state = {
       query: "",
       error: "",
-      cityID: "",
+      city: "",
       countryCode: "",
     };
   }
 
   validate = (event) => {
     let error = "";
-    let value = event.target.value;
-    let [foundCity, id] = getCityID();
-    let [foundCountry, code] = getCountryCode();
+    let query = event.target.value;
+    let { city, country } = event.target.value.split(", ");
 
-    if (foundCity === false && foundCountry === false) {
-      error = "Not Found";
+    if (query.length <= 0) {
+      error = "true";
     } else {
       error = "false";
     }
@@ -57,12 +41,14 @@ class Search extends React.Component {
   };
 
   blurHandler = (event) => {
-    this.setState({ error: "" });
+    setTimeout(() => {
+      this.setState({ error: "", focused: "false" });
+    }, 500);
   };
 
   render() {
     return (
-      <form className={styles.container}>
+      <div className={styles.container}>
         <Icon className={styles.logo} name="Logo" />
         <SearchBar
           name="name"
@@ -79,20 +65,19 @@ class Search extends React.Component {
             styles.link_spacing,
             (this.state.error === "true" ||
               this.state.query === "" ||
-              this.state.error === "Not Found" ||
               this.state.error === "") &&
               styles.link_disable
           )}
           to={{
             pathname: "/forcast",
             state: {
-              id: this.state.cityID,
+              id: this.state.city,
               code: this.state.countryCode,
             },
           }}>
           <Button className={styles.searchBtn} type="submit" label="search" />
         </Link>
-      </form>
+      </div>
     );
   }
 }
