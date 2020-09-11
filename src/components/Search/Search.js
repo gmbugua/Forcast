@@ -12,16 +12,33 @@ import countryList from "../../utility/countryList.json";
 
 const cities = [...cityList];
 const countries = [...countryList];
+let getCityID = (query) => {
+  let id;
+  return [false, id];
+};
+
+let getCountryCode = () => {
+  let code;
+  return [false, code];
+};
 
 const HelperText = (props) => {
-  if (props.error === "true") {
-    return <p className={styles.errorText}>Incorrect Input format.</p>;
+  if (props.error === "Not Found" && props.query.length <= 0) {
+    return <p className={styles.errorText}>Your input is Empty</p>;
+  } else if (props.error === "Not Found") {
+    return (
+      <p className={styles.errorText}>
+        The City and Country you entered were not found! <br />
+        Please try again using the following format: "City, Country"
+      </p>
+    );
   } else if (props.error === "false") {
     return <p className={styles.successText}>Correct Input Format.</p>;
   } else {
     return (
       <p className={styles.helperText}>
-        Search by your City and Country, spaces are welcome{" "}
+        Search by your City and Country <br />
+        e.g. Santa Rosa, United States{" "}
         <span role="img" aria-label="winky-face">
           😉
         </span>{" "}
@@ -42,26 +59,14 @@ class Search extends React.Component {
     };
   }
 
-  getCityID = () => {
-    let id;
-    return [false, id];
-  };
-
-  getCountryCode = () => {
-    let code;
-    return [false, code];
-  };
-
   validate = (event) => {
     let error = "";
     let value = event.target.value;
-    let [foundCity, id] = this.getCityID();
-    let [foundCountry, code] = this.getCountryCode();
+    let [foundCity, id] = getCityID();
+    let [foundCountry, code] = getCountryCode();
 
-    if (value.length <= 0) {
-      if (foundCity && foundCountry) {
-        error = "true";
-      }
+    if (foundCity === false && foundCountry === false) {
+      error = "Not Found";
     } else {
       error = "false";
     }
@@ -88,16 +93,19 @@ class Search extends React.Component {
           name="name"
           error={this.state.error}
           value={this.state.query}
-          placeholder={"e.g. Santa Rosa, United States"}
+          placeholder={"Edit me!"}
           onChange={this.changeHandler}
           onBlur={this.blurHandler}
         />
-        <HelperText error={this.state.error} />
+        <HelperText error={this.state.error} query={this.state.query} />
         <Link
           className={cx(
             "link",
             styles.link_spacing,
-            (this.state.error === "true" || this.state.query === "") &&
+            (this.state.error === "true" ||
+              this.state.query === "" ||
+              this.state.error === "Not Found" ||
+              this.state.error === "") &&
               styles.link_disable
           )}
           to={{
