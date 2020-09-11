@@ -55,8 +55,8 @@ class Search extends React.Component {
   validate = (event) => {
     let error = "";
     let value = event.target.value;
-    let [foundCity, id] = this.getCityID;
-    let [foundCountry, code] = this.getCountryCode;
+    let [foundCity, id] = this.getCityID();
+    let [foundCountry, code] = this.getCountryCode();
 
     if (value.length <= 0) {
       if (foundCity && foundCountry) {
