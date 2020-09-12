@@ -13,18 +13,15 @@ class Search extends React.Component {
     super();
     this.state = {
       query: "",
-      error: "",
       city: "",
       countryCode: "",
+      error: "true",
+      focused: "false",
     };
   }
 
-  validate = (event) => {
-    let error = "";
-    let query = event.target.value;
-    let { city, country } = event.target.value.split(", ");
-
-    if (query.length <= 0) {
+  validate = (query, city, countryCode, error) => {
+    if (query.length <= 0 || countryCode.length !== 2) {
       error = "true";
     } else {
       error = "false";
@@ -34,16 +31,27 @@ class Search extends React.Component {
   };
 
   changeHandler = (event) => {
-    this.setState({
-      query: event.target.value,
-      error: this.validate(event),
-    });
+    let query = event.target.value;
+    let [city, countryCode] = query.split(", ");
+    countryCode = typeof countryCode === "undefined" ? "" : countryCode;
+    this.setState((state) => ({
+      query: query,
+      city: city,
+      countryCode: countryCode,
+      error: this.validate(query, city, countryCode, state.error),
+    }));
   };
 
   blurHandler = (event) => {
-    setTimeout(() => {
-      this.setState({ error: "", focused: "false" });
-    }, 500);
+    this.setState((state) => ({
+      focused: "false",
+    }));
+  };
+
+  focusHandler = (event) => {
+    this.setState((state) => ({
+      focused: "true",
+    }));
   };
 
   render() {
@@ -56,16 +64,30 @@ class Search extends React.Component {
           value={this.state.query}
           placeholder={"Edit me!"}
           onChange={this.changeHandler}
+          onFocus={this.focusHandler}
           onBlur={this.blurHandler}
         />
-        <HelperText error={this.state.error} query={this.state.query} />
+        <p className={styles.helperText}>
+          Search by your City and 2 digit Country Code.
+          <br />
+          e.g. Santa Rosa, US or London, UK
+          <span role="img" aria-label="winky-face">
+            😉
+          </span>{" "}
+          <br />
+        </p>
+        {this.state.focused === "true" && (
+          <HelperText
+            error={this.state.error}
+            query={this.state.query}
+            countryCode={this.state.countryCode}
+          />
+        )}
         <Link
           className={cx(
             "link",
             styles.link_spacing,
-            (this.state.error === "true" ||
-              this.state.query === "" ||
-              this.state.error === "") &&
+            (this.state.error === "true" || this.state.query === "") &&
               styles.link_disable
           )}
           to={{

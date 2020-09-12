@@ -18,6 +18,10 @@
   &:focus {
     outline: 1;
   }
+
+  &::placeholder {
+    color: var(--grey);
+  }
 }
 
 .errorBar {

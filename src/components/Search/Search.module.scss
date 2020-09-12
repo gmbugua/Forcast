@@ -37,8 +37,21 @@
   }
 
   @media (max-width: map-get($breakpoints, "sm")) {
-    margin-top: var(--space-xl);
+    margin-top: var(--space-md);
     margin-bottom: var(--space-lg);
     transition: 0.3s margin ease-in;
+  }
+}
+
+.helperText {
+  color: #cdcdcd;
+  margin-top: var(--space-lg);
+  text-align: center;
+  font-size: var(--text-sm);
+  font-family: var(--font-secondary);
+
+  &:hover {
+    color: var(--gunmetal);
+    transition: 0.3s color linear;
   }
 }
