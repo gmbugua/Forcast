@@ -93,7 +93,7 @@ class Search extends React.Component {
           to={{
             pathname: "/forcast",
             state: {
-              id: this.state.city,
+              city: this.state.city,
               code: this.state.countryCode,
             },
           }}>
