@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Icon from "../Icon/Icon";
 import Button from "../Button";
 import SearchBar from "./SearchBar";
-import HelperText from "./HelperText";
+import ErrorText from "./ErrorText";
 import styles from "./Search.module.scss";
 
 class Search extends React.Component {
@@ -77,7 +77,7 @@ class Search extends React.Component {
           <br />
         </p>
         {this.state.focused === "true" && (
-          <HelperText
+          <ErrorText
             error={this.state.error}
             query={this.state.query}
             countryCode={this.state.countryCode}
