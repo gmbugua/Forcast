@@ -6,10 +6,8 @@ import styles from "./WeatherForcast.module.scss";
 
 const API_KEY = process.env.REACT_APP_WEATHERBIT_KEY;
 const WeatherForcast = (props) => {
-  const { fetchError, setError } = useState(false);
-  const { current, setCurrentForcast } = useState({});
-  const { hourly, setHourlyForcast } = useState({});
-  const { airQualtiy, setAirQualityForcast } = useState({});
+  const [fetchError, setError] = useState(false);
+  const [forcast, setForcast] = useState([]);
 
   useEffect(() => {
     const { city, code } = props.location.state;
@@ -25,18 +23,22 @@ const WeatherForcast = (props) => {
           `http://api.weatherbit.io/v2.0/current/airquality?city=${city}&country=${code}&key=${API_KEY}`
         );
 
-        const forcast = await Promise.all([current, hourly, airQuality]);
-        let forcastData = [];
+        let responses = await Promise.all([current, hourly, airQuality]);
+        let resp_data = [];
 
-        for (const resp of forcast) {
-          const data = await resp.json();
-          forcastData.push(data);
+        for (const resp of responses) {
+          let resp_json = await resp.json();
+          resp_data.push(resp_json);
         }
+
+        return resp_data;
       } catch (error) {
         console.log(error);
       }
     };
-    fetchForcast();
+    fetchForcast().then((res) => {
+      setForcast(res);
+    });
   });
   return <Nav />;
 };
