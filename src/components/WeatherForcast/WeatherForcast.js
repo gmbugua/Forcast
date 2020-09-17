@@ -52,7 +52,7 @@ const WeatherForcast = (props) => {
 
   useEffect(() => {
     fetchForcast();
-  }, [city, code]);
+  }, [city]);
   return <Nav />;
 };
 
