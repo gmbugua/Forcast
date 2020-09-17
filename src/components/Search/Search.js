@@ -10,9 +10,6 @@ import styles from "./Search.module.scss";
 
 import countries from "../../utility/country_codes.json";
 
-const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-console.log(API_KEY);
-
 const findCountry = (key) => {
   for (const country in countries) {
     if (country === key) {

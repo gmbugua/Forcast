@@ -5,7 +5,7 @@ import Nav from "./Nav";
 import styles from "./WeatherForcast.module.scss";
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-// console.log(API_KEY);
+
 const WeatherForcast = (props) => {
   const { city, code } = props.location.state;
   const [fetchError, setError] = useState(false);
@@ -42,7 +42,8 @@ const WeatherForcast = (props) => {
         fetchResponses[1].json(),
       ]);
 
-      return data;
+      console.log(data);
+      setData(data);
     } catch (error) {
       console.log(error);
       setError(true);
