@@ -10,6 +10,9 @@ import styles from "./Search.module.scss";
 
 import countries from "../../utility/country_codes.json";
 
+const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+console.log(API_KEY);
+
 const findCountry = (key) => {
   for (const country in countries) {
     if (country === key) {
@@ -32,7 +35,7 @@ class Search extends React.Component {
     };
   }
 
-  validate = (query, city, countryCode, codeFound, error) => {
+  validate = (query, countryCode, codeFound, error) => {
     if (query.length <= 0 || countryCode.length !== 2 || codeFound === false) {
       error = true;
     } else {
@@ -55,7 +58,7 @@ class Search extends React.Component {
       city: city,
       countryCode: countryCode,
       foundCode: findCode,
-      error: this.validate(query, city, countryCode, findCode, state.error),
+      error: this.validate(query, countryCode, findCode, state.error),
     }));
   };
 
@@ -109,8 +112,7 @@ class Search extends React.Component {
           className={cx(
             "link",
             styles.link_spacing,
-            (this.state.error === true || this.state.query === "") &&
-              styles.link_disable
+            this.state.error === true && styles.link_disable
           )}
           to={{
             pathname: "/forcast",

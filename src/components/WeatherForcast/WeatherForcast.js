@@ -4,16 +4,17 @@ import Nav from "./Nav";
 // eslint-disable-next-line
 import styles from "./WeatherForcast.module.scss";
 
-const API_KEY = process.env.REACT_APP_API_KEY;
+const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+// console.log(API_KEY);
 const WeatherForcast = (props) => {
+  const { city, code } = props.location.state;
   const [fetchError, setError] = useState(false);
-  const [forcast, setForcast] = useState([]);
+  const [forcastData, setData] = useState([]);
 
-  useEffect(() => {
-    const { city, code } = props.location.state;
-    const fetchForcast = async () => {
-      const dailyForcast = fetch(
-        "https://community-open-weather-map.p.rapidapi.com/forecast?q=san%20francisco%252Cus",
+  const fetchForcast = async () => {
+    try {
+      const currentForcast = fetch(
+        `https://community-open-weather-map.p.rapidapi.com/weather?q=${city},${code.toLowerCase()}`,
         {
           method: "GET",
           headers: {
@@ -22,10 +23,35 @@ const WeatherForcast = (props) => {
           },
         }
       );
-    };
 
-    // fetchForcast();
-  });
+      const dailyForcast = fetch(
+        `https://community-open-weather-map.p.rapidapi.com/forecast?q=${city},${code.toLowerCase()}`,
+        {
+          method: "GET",
+          headers: {
+            "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
+            "x-rapidapi-key": `${API_KEY}`,
+          },
+        }
+      );
+
+      const fetchResponses = await Promise.all([currentForcast, dailyForcast]);
+
+      const data = await Promise.all([
+        fetchResponses[0].json(),
+        fetchResponses[1].json(),
+      ]);
+
+      return data;
+    } catch (error) {
+      console.log(error);
+      setError(true);
+    }
+  };
+
+  useEffect(() => {
+    fetchForcast();
+  }, [city, code]);
   return <Nav />;
 };
 
