@@ -24,7 +24,7 @@ const WeatherForcast = (props) => {
       );
     };
 
-    fetchForcast();
+    // fetchForcast();
   });
   return <Nav />;
 };

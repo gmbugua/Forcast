@@ -26,20 +26,17 @@ class Search extends React.Component {
       query: "",
       city: "",
       countryCode: "",
-      error: "true",
-      focused: "false",
+      error: true,
+      focused: false,
+      foundCode: false,
     };
   }
 
-  validate = (query, city, countryCode, error) => {
-    if (
-      query.length <= 0 ||
-      countryCode.length !== 2 ||
-      findCountry(countryCode) === false
-    ) {
-      error = "true";
+  validate = (query, city, countryCode, codeFound, error) => {
+    if (query.length <= 0 || countryCode.length !== 2 || codeFound === false) {
+      error = true;
     } else {
-      error = "false";
+      error = false;
     }
 
     return error;
@@ -47,25 +44,30 @@ class Search extends React.Component {
 
   changeHandler = (event) => {
     let query = event.target.value;
+
     let [city, countryCode] = query.split(", ");
     countryCode = typeof countryCode === "undefined" ? "" : countryCode;
+
+    let findCode = findCountry(countryCode);
+
     this.setState((state) => ({
       query: query,
       city: city,
       countryCode: countryCode,
-      error: this.validate(query, city, countryCode, state.error),
+      foundCode: findCode,
+      error: this.validate(query, city, countryCode, findCode, state.error),
     }));
   };
 
   blurHandler = (event) => {
     this.setState((state) => ({
-      focused: "false",
+      focused: false,
     }));
   };
 
   focusHandler = (event) => {
     this.setState((state) => ({
-      focused: "true",
+      focused: true,
     }));
   };
 
@@ -73,15 +75,17 @@ class Search extends React.Component {
     return (
       <div className={styles.container}>
         <Icon className={styles.logo} name="Logo" />
+
         <SearchBar
           name="name"
-          error={this.state.error}
+          error={this.state.error.toString()}
           value={this.state.query}
           placeholder={"Edit me!"}
           onChange={this.changeHandler}
           onFocus={this.focusHandler}
           onBlur={this.blurHandler}
         />
+
         <p className={styles.helperText}>
           Search by your City and 2 digit Country Code.
           <br />
@@ -91,18 +95,21 @@ class Search extends React.Component {
           </span>{" "}
           <br />
         </p>
-        {this.state.focused === "true" && (
+
+        {this.state.focused === true && (
           <ErrorText
             error={this.state.error}
+            foundCode={this.state.foundCode}
             query={this.state.query}
             countryCode={this.state.countryCode}
           />
         )}
+
         <Link
           className={cx(
             "link",
             styles.link_spacing,
-            (this.state.error === "true" || this.state.query === "") &&
+            (this.state.error === true || this.state.query === "") &&
               styles.link_disable
           )}
           to={{
