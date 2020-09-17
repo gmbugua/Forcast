@@ -4,7 +4,7 @@ import Nav from "./Nav";
 // eslint-disable-next-line
 import styles from "./WeatherForcast.module.scss";
 
-const API_KEY = process.env.REACT_APP_WEATHERBIT_KEY;
+const API_KEY = process.env.REACT_APP_API_KEY;
 const WeatherForcast = (props) => {
   const [fetchError, setError] = useState(false);
   const [forcast, setForcast] = useState([]);
@@ -12,33 +12,19 @@ const WeatherForcast = (props) => {
   useEffect(() => {
     const { city, code } = props.location.state;
     const fetchForcast = async () => {
-      try {
-        const current = fetch(
-          `http://api.weatherbit.io/v2.0/current?city=${city}&country=${code}&key=${API_KEY}`
-        );
-        const hourly = fetch(
-          `http://api.weatherbit.io/v2.0/forecast/hourly?city=${city}&country=${code}&key=${API_KEY}&hours=12`
-        );
-        const airQuality = fetch(
-          `http://api.weatherbit.io/v2.0/current/airquality?city=${city}&country=${code}&key=${API_KEY}`
-        );
-
-        let responses = await Promise.all([current, hourly, airQuality]);
-        let resp_data = [];
-
-        for (const resp of responses) {
-          let resp_json = await resp.json();
-          resp_data.push(resp_json);
+      const dailyForcast = fetch(
+        "https://community-open-weather-map.p.rapidapi.com/forecast?q=san%20francisco%252Cus",
+        {
+          method: "GET",
+          headers: {
+            "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
+            "x-rapidapi-key": `${API_KEY}`,
+          },
         }
-
-        return resp_data;
-      } catch (error) {
-        console.log(error);
-      }
+      );
     };
-    fetchForcast().then((res) => {
-      setForcast(res);
-    });
+
+    fetchForcast();
   });
   return <Nav />;
 };

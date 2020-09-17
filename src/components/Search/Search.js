@@ -8,6 +8,19 @@ import SearchBar from "./SearchBar";
 import ErrorText from "./ErrorText";
 import styles from "./Search.module.scss";
 
+import countries from "../../utility/country_codes.json";
+
+const findCountry = (key) => {
+  for (const country in countries) {
+    if (country === key) {
+      return true;
+    }
+  }
+  return false;
+};
+
+console.log(findCountry("GB"));
+
 class Search extends React.Component {
   constructor() {
     super();
@@ -70,7 +83,7 @@ class Search extends React.Component {
         <p className={styles.helperText}>
           Search by your City and 2 digit Country Code.
           <br />
-          e.g. Santa Rosa, US or London, UK
+          e.g. Santa Rosa, US or London, GB{" "}
           <span role="img" aria-label="winky-face">
             😉
           </span>{" "}
