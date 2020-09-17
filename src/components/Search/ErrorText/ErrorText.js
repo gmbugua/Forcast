@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./ErrorText.module.scss";
 
-const HelperText = (props) => {
+const ErrorText = (props) => {
   if (props.query === "" && props.error === "true") {
     return <p className={styles.errorText}>Your input is Empty</p>;
   } else if (props.countryCode.length !== 2 && props.error === "true") {
@@ -18,9 +18,9 @@ const HelperText = (props) => {
   }
 };
 
-HelperText.propTypes = {
+ErrorText.propTypes = {
   error: PropTypes.string.isRequired,
   countryCode: PropTypes.string,
 };
 
-export default HelperText;
+export default ErrorText;

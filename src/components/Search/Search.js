@@ -19,8 +19,6 @@ const findCountry = (key) => {
   return false;
 };
 
-console.log(findCountry("GB"));
-
 class Search extends React.Component {
   constructor() {
     super();
@@ -34,7 +32,11 @@ class Search extends React.Component {
   }
 
   validate = (query, city, countryCode, error) => {
-    if (query.length <= 0 || countryCode.length !== 2) {
+    if (
+      query.length <= 0 ||
+      countryCode.length !== 2 ||
+      findCountry(countryCode) === false
+    ) {
       error = "true";
     } else {
       error = "false";
