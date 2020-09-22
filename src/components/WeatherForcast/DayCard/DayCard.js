@@ -11,7 +11,7 @@ const DayCard = (props) => {
         <p className={styles.day}>{props.day}</p>
       </div>
       <div>
-        <Icon className={styles.icon} name={props.iconName} size={"5em"} />
+        <Icon className={styles.icon} name={props.iconName} main={props.main} />
       </div>
       <div>
         <p className={styles.degrees}>
@@ -25,13 +25,15 @@ const DayCard = (props) => {
 DayCard.propTypes = {
   day: PropTypes.string.isRequired,
   iconName: PropTypes.string.isRequired,
-  units: PropTypes.bool.isRequired,
+  main: PropTypes.string.isRequired,
+  units: PropTypes.string.isRequired,
   temperature: PropTypes.number.isRequired,
 };
 
 DayCard.defaultProps = {
   day: "Day",
-  iconName: "sunny",
+  iconName: "800",
+  main: "clear",
   units: "Fahreneit",
   temperature: 0,
 };

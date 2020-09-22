@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Nav from "./Nav";
+import DayCard from "./DayCard";
 
 // eslint-disable-next-line
 import styles from "./WeatherForcast.module.scss";
@@ -10,6 +11,7 @@ const WeatherForcast = (props) => {
   const { city, code } = props.location.state;
   const [fetchError, setError] = useState(false);
   const [forcastData, setData] = useState([]);
+  const [units, changeUnits] = useState();
 
   const fetchForcast = async () => {
     try {
@@ -51,9 +53,15 @@ const WeatherForcast = (props) => {
   };
 
   useEffect(() => {
-    fetchForcast();
+    // fetchForcast();
   }, [city]);
-  return <Nav />;
+
+  return (
+    <div>
+      <Nav />
+      <DayCard day={"Wednesday"} main="snow" iconName="clear-2" />
+    </div>
+  );
 };
 
 export default WeatherForcast;

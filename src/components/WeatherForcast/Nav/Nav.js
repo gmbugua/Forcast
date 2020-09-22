@@ -8,11 +8,11 @@ const Nav = () => {
     <div className={styles.container}>
       <Link className="link" to="/search">
         <button className={styles.backBtn}>
-          <Icon className={styles.backIcon} name="chevron" />
+          <Icon className={styles.backIcon} main="misc" name="chevron" />
           <p>back</p>
         </button>
       </Link>
-      <Icon className={styles.logo} name="Logo" />
+      <Icon className={styles.logo} main="misc" name="logo" />
     </div>
   );
 };

@@ -74,7 +74,7 @@ class Search extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <Icon className={styles.logo} name="Logo" />
+        <Icon className={styles.logo} name="logo" main="misc" />
 
         <SearchBar
           name="name"
