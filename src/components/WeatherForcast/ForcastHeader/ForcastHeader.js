@@ -7,30 +7,30 @@ const ForcastHeader = (props) => {
     <div className={styles.container}>
       <h2>
         {props.city}
-        {props.state !== "" ? ", " : ""}
-        {props.state}
+        {props.country !== "" ? ", " : ""}
+        {props.country}
       </h2>
       <p>
         {props.day} {props.time}
       </p>
-      <p>{props.forecast}</p>
+      <p>{props.desc}</p>
     </div>
   );
 };
 
 ForcastHeader.propTypes = {
   city: PropTypes.string.isRequired,
-  state: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
-  forecast: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
 };
 
 ForcastHeader.defaultProps = {
   city: "city",
-  state: "",
+  country: "",
   day: "Day",
   time: "0:00 a.m.",
-  forecast: "Sunny",
+  desc: "sunny",
 };
 
 export default ForcastHeader;

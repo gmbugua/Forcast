@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Nav from "./Nav";
 import DayCard from "./DayCard";
+import TemperatureHeader from "./TemperatureHeader";
+import ForcastHeader from "./ForcastHeader";
+import ForcastCard from "./ForcastCard";
 
 // eslint-disable-next-line
 import styles from "./WeatherForcast.module.scss";
@@ -59,7 +62,16 @@ const WeatherForcast = (props) => {
   return (
     <div>
       <Nav />
-      <DayCard day={"Wednesday"} main="snow" iconName="clear-2" />
+      <ForcastHeader />
+      <ForcastCard />
+      <TemperatureHeader />
+      <div>
+        <DayCard />
+        <DayCard />
+        <DayCard />
+        <DayCard />
+        <DayCard />
+      </div>
     </div>
   );
 };

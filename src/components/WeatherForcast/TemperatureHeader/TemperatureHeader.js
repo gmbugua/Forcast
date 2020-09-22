@@ -1,16 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Icon from "../../Icon/Icon";
+import Icon from "../../Icon";
 import styles from "./TemperatureHeader.module.scss";
-import { useWindowSize } from "../../../utility/Hooks";
 
 const TemperatureHeader = (props) => {
-  const { width } = useWindowSize();
   return (
     <div className={styles.container}>
       <div className={styles.icon}>
-        <Icon name={props.iconName} size={width < 542 ? 125 : 200} />
+        <Icon main={props.main} name={props.iconName} />
       </div>
       <div>
         <button>
@@ -30,7 +28,8 @@ TemperatureHeader.propTypes = {
 
 TemperatureHeader.defaultProps = {
   units: "Fahreneit",
-  iconName: "sunny",
+  iconName: "800",
+  main: "clear",
   temperature: 0,
 };
 
