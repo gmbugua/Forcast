@@ -9,9 +9,22 @@ const parseDate = (date) => {
 };
 
 const parseData = (forcastData) => {
+  let chartMapping = new Map();
+
+  // Two pass parse
+  // First add the dates to the mapping
   forcastData.forEach((segment) => {
-    console.log(segment);
+    let date = parseDate(segment?.dt_txt);
+    chartMapping[date[0]] = [];
   });
+
+  // Second map relevant chart data objects to those dates
+  forcastData.forEach((segment) => {
+    let date = parseDate(segment?.dt_txt);
+    chartMapping[date[0]].push({ time: date[1], temp: segment?.main.temp });
+  });
+
+  return chartMapping;
 };
 
 console.log(parseData(FiveDay));
