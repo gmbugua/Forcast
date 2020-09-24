@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+
+// COMPONENTS
 import Nav from "./Nav";
 import DayCard from "./DayCard";
 import TemperatureHeader from "./TemperatureHeader";
@@ -9,7 +11,36 @@ import ForcastCard from "./ForcastCard";
 // eslint-disable-next-line
 import styles from "./WeatherForcast.module.scss";
 
+import { FiveDay } from "../../utility/sample_api_data";
+
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+
+const parseDate = (date) => {
+  let parsedDate = date.split(" ");
+  return parsedDate;
+};
+
+const parseData = (forcastData) => {
+  let chartMapping = new Map();
+
+  // Two Pass parse
+  // First add the dates to the mapping
+  forcastData.forEach((segment) => {
+    let date = parseDate(segment?.dt_txt);
+    chartMapping[date[0]] = { times: [], data: [] };
+  });
+
+  // Second map relevant chart data objects to those dates
+  forcastData.forEach((segment) => {
+    let date = parseDate(segment?.dt_txt);
+    chartMapping[date[0]].times.push(date[1]);
+    chartMapping[date[0]].data.push(segment?.main.temp);
+  });
+
+  return chartMapping;
+};
+
+console.log(parseData(FiveDay));
 
 const WeatherForcast = (props) => {
   const { city, code } = props.location.state;
