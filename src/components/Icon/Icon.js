@@ -7,7 +7,6 @@ const Icon = ({ name, main, color, ...rest }) => {
   if (typeof Icon === "undefined") {
     Icon = DefaultIcons[main].def;
   }
-  console.log(Icon);
   return <Icon color={color} {...rest} />;
 };
 

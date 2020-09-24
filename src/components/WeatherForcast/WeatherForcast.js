@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Nav from "./Nav";
 import DayCard from "./DayCard";
 import TemperatureHeader from "./TemperatureHeader";
+import TemperatureChart from "./TemperatureChart";
 import ForcastHeader from "./ForcastHeader";
 import ForcastCard from "./ForcastCard";
 
@@ -14,7 +15,8 @@ const WeatherForcast = (props) => {
   const { city, code } = props.location.state;
   const [fetchError, setError] = useState(false);
   const [forcastData, setData] = useState([]);
-  const [units, changeUnits] = useState();
+  const [units, setUnits] = useState();
+  const [currDay, setDay] = useState();
 
   const fetchForcast = async () => {
     try {
@@ -65,6 +67,7 @@ const WeatherForcast = (props) => {
       <ForcastHeader />
       <ForcastCard />
       <TemperatureHeader />
+      <TemperatureChart />
       <div>
         <DayCard />
         <DayCard />

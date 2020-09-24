@@ -1,6 +1,3 @@
-const date = new Date();
-const today = today.getDay();
-
 export const Day = {
   coord: {
     lon: -122.71,

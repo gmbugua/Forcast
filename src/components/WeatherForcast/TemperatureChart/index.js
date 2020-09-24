@@ -1,1 +1,1 @@
-export { default } from "./TemeratureChart.js";
+export { default } from "./TemperatureChart.js";
