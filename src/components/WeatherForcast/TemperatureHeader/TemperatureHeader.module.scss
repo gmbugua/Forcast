@@ -34,7 +34,8 @@ $smoothTransit: 0.6s ease-in-out;
 }
 
 .icon {
-  max-width: 200px;
+  width: 100px;
+  height: 100px;
 }
 
 @media (max-width: map-get($breakpoints, "sm")) {
@@ -43,7 +44,7 @@ $smoothTransit: 0.6s ease-in-out;
     transition: $smoothTransit;
   }
   .icon {
-    max-width: 140px;
+    width: 100px;
     transition: $smoothTransit;
   }
 }

@@ -2,41 +2,48 @@
 
 //here's where we use the grid mixins
 .container {
-  @include grid;
-  grid-auto-rows: 200px;
-
-  @media only screen and (min-width: 700px) {
-    @include gridLayout((12, 1), (12, 1), (12, 1), (12, 1));
-  }
+  @extend .wrapper;
 }
 
 .container {
-  max-width: 100%;
-  margin: 0 auto;
-
-  > div:nth-of-type(1) {
-    background-color: var(--grey);
-  }
+  padding: 100px;
+  margin: 30px 50px 100px 50px;
 
   > div:nth-of-type(2) {
-    background-color: var(--grey);
+    justify-content: space-between;
+    @media (max-width: map-get($breakpoints, "sm")) {
+      > div:not(:last-of-type) {
+        margin-bottom: 30px;
+      }
+      flex-direction: column;
+      transition: 1s ease-in-out;
+    }
   }
 
-  > div:nth-of-type(3) {
-    background-color: var(--grey);
-  }
-
+  // cards
   > div:nth-of-type(4) {
-    background-color: var(--grey);
+    width: 100%;
+    justify-content: space-between;
+
+    @media (max-width: map-get($breakpoints, "sm")) {
+      > div:not(:last-of-type) {
+        margin-bottom: 30px;
+      }
+      flex-direction: column;
+      transition: 1s ease-in-out;
+    }
   }
 
-  > div:not(:first-of-type) {
-    color: var(--gunmetal);
+  > div:not(:last-of-type) {
+    margin-bottom: 50px;
   }
 
   > div {
     display: flex;
-    justify-content: center;
     align-items: center;
   }
+
+  // @media (max-width: map-get($breakpoints, "sm")) {
+  //   padding: 5 1 0 5;
+  // }
 }

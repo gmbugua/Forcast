@@ -8,7 +8,7 @@ const TemperatureHeader = (props) => {
   return (
     <div className={styles.container}>
       <div className={styles.icon}>
-        <Icon main={props.main} name={props.iconName} />
+        <Icon main={props.main} name={props.iconName} className={styles.icon} />
       </div>
       <div>
         <button>

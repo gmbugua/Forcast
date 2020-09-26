@@ -95,16 +95,31 @@ const WeatherForcast = (props) => {
   return (
     <div>
       <Nav />
-      <ForcastHeader />
-      <ForcastCard />
-      <TemperatureHeader />
-      <TemperatureChart />
-      <div>
-        <DayCard />
-        <DayCard />
-        <DayCard />
-        <DayCard />
-        <DayCard />
+      <div className={styles.container}>
+        <div>
+          <ForcastHeader />
+        </div>
+
+        <div>
+          <div>
+            <TemperatureHeader />
+          </div>
+          <div>
+            <ForcastCard />
+          </div>
+        </div>
+
+        <div>
+          <TemperatureChart />
+        </div>
+
+        <div>
+          <DayCard />
+          <DayCard />
+          <DayCard />
+          <DayCard />
+          <DayCard />
+        </div>
       </div>
     </div>
   );

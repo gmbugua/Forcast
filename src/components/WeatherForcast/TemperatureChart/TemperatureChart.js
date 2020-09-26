@@ -2,10 +2,16 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 import PropTypes from "prop-types";
 
+import styles from "./TemperatureChart.module.scss";
+
 const options = {
   maintainAspectRatio: false,
   legend: {
     display: false,
+  },
+  padding: {
+    x: 10,
+    y: 10,
   },
   scales: {
     xAxes: [
@@ -21,7 +27,7 @@ const options = {
           display: false,
         },
         gridLines: {
-          display: true,
+          display: false,
         },
       },
     ],
@@ -29,25 +35,32 @@ const options = {
 };
 
 const TemperatureChart = (props) => {
-  const chartData = {
+  let chartData = {
     labels: props.timeLabels,
-    height: 100,
     datasets: [
       {
-        label: "temp",
+        label: "Temperature",
+
+        // line
+        borderColor: "rgba(15, 139, 141)",
+
+        // area under line
         fill: true,
-        backgroundColor: "rgba(236, 154, 41, .6)",
+        backgroundColor: "rgba(15, 139, 141, .6)",
+
+        // points
+        pointBorderColor: "rgb(20, 54, 66)",
         pointBackgroundColor: "rgba(15, 139, 141)",
         hoverBackgroundColor: "rgba(236, 154, 41)",
-        pointBorderColor: "rgb(20, 54, 66)",
-        pointRadius: 7,
+        pointRadius: 5,
+
         data: props.data,
       },
     ],
   };
   return (
-    <div>
-      <Line data={chartData} options={options} height={300} />
+    <div className={styles.container}>
+      <Line data={chartData} options={options} />
     </div>
   );
 };
@@ -58,7 +71,7 @@ TemperatureChart.propType = {
 };
 
 TemperatureChart.defaultProps = {
-  data: [10, 20, 75, 40, 50, 60],
+  data: [0, 130, 75, 90, 50, 60, 100],
   timeLabels: ["", "9:00", "12:00", "15:00", "18:00", "21:00"],
 };
 

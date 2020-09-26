@@ -5,11 +5,11 @@ import styles from "./ForcastHeader.module.scss";
 const ForcastHeader = (props) => {
   return (
     <div className={styles.container}>
-      <h2>
+      <h1>
         {props.city}
         {props.country !== "" ? ", " : ""}
         {props.country}
-      </h2>
+      </h1>
       <p>
         {props.day} {props.time}
       </p>

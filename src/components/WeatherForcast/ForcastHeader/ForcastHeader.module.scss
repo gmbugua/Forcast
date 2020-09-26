@@ -9,14 +9,15 @@ $text-margins: 5px 0px 0px 0px;
   flex-wrap: wrap;
   max-width: 100%;
 
-  > h2 {
+  > h1 {
+    font-size: var(--text-xxxl);
     margin: $text-margins;
   }
 
   > p {
     color: var(--darkCyan);
     margin: $text-margins;
-    font-size: var(--text-md);
+    font-size: var(--text-lg);
     font-family: var(--font-secondary);
   }
 
