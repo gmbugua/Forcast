@@ -13,7 +13,7 @@ const TemperatureHeader = (props) => {
       <div>
         <button>
           <h1>{props.temperature} </h1>
-          <h1>°{props.units === "Fahreneit" ? "F" : "C"} </h1>
+          <h1>°{props.units === "Fahrenheit" ? "F" : "C"} </h1>
         </button>
       </div>
     </div>
@@ -27,7 +27,7 @@ TemperatureHeader.propTypes = {
 };
 
 TemperatureHeader.defaultProps = {
-  units: "Fahreneit",
+  units: "Fahrenheit",
   iconName: "800",
   main: "clear",
   temperature: 0,

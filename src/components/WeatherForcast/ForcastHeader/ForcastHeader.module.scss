@@ -10,14 +10,14 @@ $text-margins: 5px 0px 0px 0px;
   max-width: 100%;
 
   > h1 {
-    font-size: var(--text-xxxl);
+    font-size: var(--text-xxl);
     margin: $text-margins;
   }
 
   > p {
     color: var(--darkCyan);
     margin: $text-margins;
-    font-size: var(--text-lg);
+    font-size: var(--text-md);
     font-family: var(--font-secondary);
   }
 

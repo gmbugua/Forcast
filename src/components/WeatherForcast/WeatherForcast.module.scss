@@ -1,16 +1,34 @@
 @import "../../custom_styles/index.scss";
 
-//here's where we use the grid mixins
 .container {
-  @extend .wrapper;
+  display: flex;
+  flex-direction: column;
 }
 
-.container {
-  padding: 100px;
+//here's where we use the grid mixins
+.content {
+  @extend .wrapper;
+  align-self: center;
+}
+
+.content {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 20px 50px 20px;
   margin: 30px 50px 100px 50px;
 
-  > div:nth-of-type(2) {
+  > div:first-of-type {
+    width: 75%;
+    align-self: center;
     justify-content: space-between;
+  }
+
+  // temp and card headers
+  > div:nth-of-type(2) {
+    width: 80%;
+    align-self: center;
+    justify-content: space-evenly;
     @media (max-width: map-get($breakpoints, "sm")) {
       > div:not(:last-of-type) {
         margin-bottom: 30px;
@@ -20,14 +38,24 @@
     }
   }
 
+  > div:nth-of-type(3) {
+    align-self: center;
+  }
+
   // cards
   > div:nth-of-type(4) {
-    width: 100%;
-    justify-content: space-between;
+    width: 80%;
+    justify-content: space-evenly;
+    align-self: center;
 
-    @media (max-width: map-get($breakpoints, "sm")) {
+    > div:not(:last-of-type) {
+      margin-right: 30px;
+    }
+
+    @media (max-width: map-get($breakpoints, "md")) {
       > div:not(:last-of-type) {
         margin-bottom: 30px;
+        margin-right: 0px;
       }
       flex-direction: column;
       transition: 1s ease-in-out;
@@ -42,8 +70,4 @@
     display: flex;
     align-items: center;
   }
-
-  // @media (max-width: map-get($breakpoints, "sm")) {
-  //   padding: 5 1 0 5;
-  // }
 }

@@ -74,52 +74,54 @@ class Search extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <Icon className={styles.logo} name="logo" main="misc" />
+        <div className={styles.content}>
+          <Icon className={styles.logo} name="logo" main="misc" />
 
-        <SearchBar
-          name="name"
-          error={this.state.error.toString()}
-          value={this.state.query}
-          placeholder={"Edit me!"}
-          onChange={this.changeHandler}
-          onFocus={this.focusHandler}
-          onBlur={this.blurHandler}
-        />
-
-        <p className={styles.helperText}>
-          Search by your City and 2 digit Country Code.
-          <br />
-          e.g. Santa Rosa, US or London, GB{" "}
-          <span role="img" aria-label="winky-face">
-            😉
-          </span>{" "}
-          <br />
-        </p>
-
-        {this.state.focused === true && (
-          <ErrorText
-            error={this.state.error}
-            foundCode={this.state.foundCode}
-            query={this.state.query}
-            countryCode={this.state.countryCode}
+          <SearchBar
+            name="name"
+            error={this.state.error.toString()}
+            value={this.state.query}
+            placeholder={"Edit me!"}
+            onChange={this.changeHandler}
+            onFocus={this.focusHandler}
+            onBlur={this.blurHandler}
           />
-        )}
 
-        <Link
-          className={cx(
-            "link",
-            styles.link_spacing,
-            this.state.error === true && styles.link_disable
+          <p className={styles.helperText}>
+            Search by your City and 2 digit Country Code.
+            <br />
+            e.g. Santa Rosa, US or London, GB{" "}
+            <span role="img" aria-label="winky-face">
+              😉
+            </span>{" "}
+            <br />
+          </p>
+
+          {this.state.focused === true && (
+            <ErrorText
+              error={this.state.error}
+              foundCode={this.state.foundCode}
+              query={this.state.query}
+              countryCode={this.state.countryCode}
+            />
           )}
-          to={{
-            pathname: "/forcast",
-            state: {
-              city: this.state.city,
-              code: this.state.countryCode,
-            },
-          }}>
-          <Button className={styles.searchBtn} type="submit" label="search" />
-        </Link>
+
+          <Link
+            className={cx(
+              "link",
+              styles.link_spacing,
+              this.state.error === true && styles.link_disable
+            )}
+            to={{
+              pathname: "/forcast",
+              state: {
+                city: this.state.city,
+                code: this.state.countryCode,
+              },
+            }}>
+            <Button className={styles.searchBtn} type="submit" label="search" />
+          </Link>
+        </div>
       </div>
     );
   }

@@ -1,26 +1,33 @@
 @import "../../custom_styles/index.scss";
 
-//here's where we use the grid mixins
 .container {
-  @extend .wrapper;
   display: flex;
-  margin-top: 5vh;
-  width: 100% - 10%;
-  height: 100vh - 10vh;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+}
 
-  @media (max-width: map-get($breakpoints, "sm")) {
-    height: 100vh - 18vh;
-    padding-top: var(--space-md);
-  }
+//here's where we use the grid mixins
+.content {
+  @extend .wrapper;
+  width: 80%;
+  height: 100vh - 30vh;
+  margin: 50px 50px 100px 50px;
+  padding: 100px 20px 100px 20px;
+  align-self: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo {
-  width: 50vw;
-  height: 20vh;
+  width: 400px;
+  min-height: 100px;
+
+  @media (max-height: map-get($breakpoints, "sm")) {
+    width: 200px;
+    height: 100px;
+  }
 }
 
 .link_disable {
@@ -33,13 +40,13 @@
   @media (max-width: map-get($breakpoints, "md")) {
     margin-top: var(--space-md);
     margin-bottom: var(--space-lg);
-    transition: 0.3s margin ease-in;
+    transition: 0.3s ease-in-out;
   }
 
   @media (max-width: map-get($breakpoints, "sm")) {
     margin-top: var(--space-md);
-    margin-bottom: var(--space-lg);
-    transition: 0.3s margin ease-in;
+    margin-bottom: var(--space-xl);
+    transition: 0.3s ease-in-out;
   }
 }
 

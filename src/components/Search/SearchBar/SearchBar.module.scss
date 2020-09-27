@@ -2,8 +2,9 @@
 
 .search {
   @include text-container;
-  width: calc(100% - 45%);
+  width: calc(100% - 30%);
   height: 70px;
+  min-height: 50px;
   box-sizing: border-box;
   background-color: var(--white);
   border: 2px solid #f1f1f1;

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 // COMPONENTS
 import Nav from "./Nav";
 import DayCard from "./DayCard";
+import Button from "../Button";
 import TemperatureHeader from "./TemperatureHeader";
 import TemperatureChart from "./TemperatureChart";
 import ForcastHeader from "./ForcastHeader";
@@ -46,8 +47,16 @@ const WeatherForcast = (props) => {
   const { city, code } = props.location.state;
   const [fetchError, setError] = useState(false);
   const [forcastData, setData] = useState([]);
-  const [units, setUnits] = useState();
+  const [units, setUnits] = useState("Fahrenheit");
   const [currDay, setDay] = useState();
+
+  const handleSwitchUnits = (curr) => {
+    if (curr === "Fahrenheit") {
+      setUnits("Celcius");
+    } else {
+      setUnits("Fahrenheit");
+    }
+  };
 
   const fetchForcast = async () => {
     try {
@@ -93,16 +102,24 @@ const WeatherForcast = (props) => {
   }, [city]);
 
   return (
-    <div>
+    <div className={styles.container}>
       <Nav />
-      <div className={styles.container}>
+      <div className={styles.content}>
         <div>
-          <ForcastHeader />
+          <div>
+            <ForcastHeader />
+          </div>
+          <div>
+            <Button
+              label={units === "Fahrenheit" ? "F" : "C"}
+              onClick={() => handleSwitchUnits(units)}
+            />
+          </div>
         </div>
 
         <div>
           <div>
-            <TemperatureHeader />
+            <TemperatureHeader units={units} />
           </div>
           <div>
             <ForcastCard />
@@ -114,11 +131,11 @@ const WeatherForcast = (props) => {
         </div>
 
         <div>
-          <DayCard />
-          <DayCard />
-          <DayCard />
-          <DayCard />
-          <DayCard />
+          <DayCard units={units} />
+          <DayCard units={units} />
+          <DayCard units={units} />
+          <DayCard units={units} />
+          <DayCard units={units} />
         </div>
       </div>
     </div>
