@@ -24,18 +24,18 @@ const parseDate = (date) => {
 const parseData = (forcastData) => {
   let chartMapping = new Map();
 
-  // Two Pass parse
+  // Two Pass Parse
   // First add the dates to the mapping
   forcastData.forEach((segment) => {
     let date = parseDate(segment?.dt_txt);
-    chartMapping[date[0]] = { times: [], data: [] };
+    chartMapping[date[0]] = { times: [], temps: [] };
   });
 
   // Second map relevant chart data objects to those dates
   forcastData.forEach((segment) => {
     let date = parseDate(segment?.dt_txt);
     chartMapping[date[0]].times.push(date[1]);
-    chartMapping[date[0]].data.push(segment?.main.temp);
+    chartMapping[date[0]].temps.push(segment?.main.temp);
   });
 
   return chartMapping;
