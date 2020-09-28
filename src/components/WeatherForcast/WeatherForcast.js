@@ -21,7 +21,7 @@ const parseDate = (date) => {
   return parsedDate;
 };
 
-const parseData = (forcastData) => {
+const parseHourlyForcastData = (forcastData) => {
   let chartMapping = new Map();
 
   // Two Pass Parse
@@ -41,24 +41,32 @@ const parseData = (forcastData) => {
   return chartMapping;
 };
 
-console.log(parseData(FiveDay));
+console.log(parseHourlyForcastData(FiveDay));
 
-const WeatherForcast = (props) => {
-  const { city, code } = props.location.state;
-  const [fetchError, setError] = useState(false);
-  const [forcastData, setData] = useState([]);
-  const [units, setUnits] = useState("Fahrenheit");
-  const [currDay, setDay] = useState();
+class WeatherForcast extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currDay: "",
+      data: [],
+      location: this.props.location.state,
+      fetchError: false,
+      units: "Fahrenheit",
+    };
+  }
 
-  const handleSwitchUnits = (curr) => {
-    if (curr === "Fahrenheit") {
-      setUnits("Celcius");
+  handleSwitchUnits = () => {
+    if (this.state.units === "Fahrenheit") {
+      this.setState({ units: "Celcius" });
+      console.log("rerender");
     } else {
-      setUnits("Fahrenheit");
+      this.setState({ units: "Fahrenheit" });
     }
   };
 
-  const fetchForcast = async () => {
+  fetchForcast = async () => {
+    const { city, code } = this.state.location;
+
     try {
       const currentForcast = fetch(
         `https://community-open-weather-map.p.rapidapi.com/weather?q=${city},${code.toLowerCase()}`,
@@ -90,56 +98,57 @@ const WeatherForcast = (props) => {
       ]);
 
       console.log(data);
-      setData(data);
+      this.setState({ data: data });
     } catch (error) {
       console.log(error);
-      setError(true);
+      this.setState({ fetchError: true });
     }
   };
 
-  useEffect(() => {
-    // fetchForcast();
-  }, [city]);
-
-  return (
-    <div className={styles.container}>
-      <Nav />
-      <div className={styles.content}>
-        <div>
+  componentDidMount() {
+    // this.fetchForcast();
+  }
+  render() {
+    return (
+      <div className={styles.container}>
+        <Nav />
+        <div className={styles.content}>
           <div>
-            <ForcastHeader />
+            <div>
+              <ForcastHeader />
+            </div>
+            <div>
+              <Button
+                label={this.state.units === "Fahrenheit" ? "F" : "C"}
+                onClick={() => this.handleSwitchUnits()}
+              />
+            </div>
           </div>
-          <div>
-            <Button
-              label={units === "Fahrenheit" ? "F" : "C"}
-              onClick={() => handleSwitchUnits(units)}
-            />
-          </div>
-        </div>
 
-        <div>
           <div>
-            <TemperatureHeader units={units} />
+            <div>
+              <TemperatureHeader units={this.state.units} />
+            </div>
+            <div>
+              <ForcastCard />
+            </div>
           </div>
+
           <div>
-            <ForcastCard />
+            <TemperatureChart />
           </div>
-        </div>
 
-        <div>
-          <TemperatureChart />
-        </div>
-
-        <div>
-          <DayCard units={units} />
-          <DayCard units={units} />
-          <DayCard units={units} />
-          <DayCard units={units} />
-          <DayCard units={units} />
+          <div>
+            <DayCard units={this.state.units} />
+            <DayCard units={this.state.units} />
+            <DayCard units={this.state.units} />
+            <DayCard units={this.state.units} />
+            <DayCard units={this.state.units} />
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default WeatherForcast;
