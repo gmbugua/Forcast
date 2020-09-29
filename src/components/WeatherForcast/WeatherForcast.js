@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 // COMPONENTS
 import Nav from "./Nav";
@@ -22,7 +22,7 @@ const parseDate = (date) => {
 };
 
 const parseHourlyForcastData = (forcastData) => {
-  let chartMapping = new Map();
+  let chartMapping = {};
 
   // Two Pass Parse
   // First add the dates to the mapping
@@ -41,7 +41,8 @@ const parseHourlyForcastData = (forcastData) => {
   return chartMapping;
 };
 
-console.log(parseHourlyForcastData(FiveDay));
+const hourlyData = parseHourlyForcastData(FiveDay);
+console.log(Object.keys(hourlyData));
 
 class WeatherForcast extends React.Component {
   constructor(props) {
@@ -55,14 +56,13 @@ class WeatherForcast extends React.Component {
     };
   }
 
-  handleSwitchUnits = () => {
-    if (this.state.units === "Fahrenheit") {
-      this.setState({ units: "Celcius" });
-      console.log("rerender");
-    } else {
-      this.setState({ units: "Fahrenheit" });
-    }
-  };
+  /* Life Cycle */
+
+  componentDidMount() {
+    // this.fetchForcast();
+  }
+
+  /* Fetch Forcast Data */
 
   fetchForcast = async () => {
     const { city, code } = this.state.location;
@@ -105,9 +105,17 @@ class WeatherForcast extends React.Component {
     }
   };
 
-  componentDidMount() {
-    // this.fetchForcast();
-  }
+  /* handles */
+
+  handleSwitchUnits = () => {
+    if (this.state.units === "Fahrenheit") {
+      this.setState({ units: "Celcius" });
+      console.log("rerender");
+    } else {
+      this.setState({ units: "Fahrenheit" });
+    }
+  };
+
   render() {
     return (
       <div className={styles.container}>
@@ -120,6 +128,7 @@ class WeatherForcast extends React.Component {
             <div>
               <Button
                 label={this.state.units === "Fahrenheit" ? "F" : "C"}
+                type="toggle"
                 onClick={() => this.handleSwitchUnits()}
               />
             </div>
@@ -139,7 +148,7 @@ class WeatherForcast extends React.Component {
           </div>
 
           <div>
-            <DayCard units={this.state.units} />
+            <DayCard active={true} units={this.state.units} />
             <DayCard units={this.state.units} />
             <DayCard units={this.state.units} />
             <DayCard units={this.state.units} />

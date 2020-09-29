@@ -1,12 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import cx from "classnames";
 
 import Icon from "../../Icon/";
 import styles from "./DayCard.module.scss";
 
 const DayCard = (props) => {
   return (
-    <div className={styles.container}>
+    <div
+      className={cx(
+        styles.container,
+        styles[props.active ? "active" : "inactive"]
+      )}>
       <div>
         <p className={styles.day}>{props.day}</p>
       </div>
@@ -23,6 +28,7 @@ const DayCard = (props) => {
 };
 
 DayCard.propTypes = {
+  active: PropTypes.bool.isRequired,
   day: PropTypes.string.isRequired,
   iconName: PropTypes.string.isRequired,
   main: PropTypes.string.isRequired,
@@ -31,6 +37,7 @@ DayCard.propTypes = {
 };
 
 DayCard.defaultProps = {
+  active: false,
   day: "Day",
   iconName: "800",
   main: "clear",

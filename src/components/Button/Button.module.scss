@@ -3,18 +3,19 @@
 .btn {
   @include text-container;
   cursor: pointer;
+  display: border-box;
   border: none;
   border-radius: 5px;
   padding: 1em 2em 1em 2em;
   background-color: var(--gunmetal);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: var(--white);
   p {
-    color: var(--white);
     font-size: var(--text-lg);
     font-weight: 700;
   }
   &:hover {
-    background-color: #ec9b29;
+    background-color: var(--carrot);
     transition: 0.3s ease-in-out;
   }
   &:focus {
@@ -26,5 +27,19 @@
       font-size: var(--text-md);
       transition: 1s ease-in-out;
     }
+  }
+}
+
+.toggle {
+  color: var(--gunmetal);
+  background-color: var(--white);
+  border-style: solid;
+  border-width: 0.5px;
+  border-color: var(--grey);
+  &:hover {
+    color: var(--white);
+    background-color: var(--carrot);
+    transition: 0.3s ease-in-out;
+    border-color: transparent;
   }
 }
