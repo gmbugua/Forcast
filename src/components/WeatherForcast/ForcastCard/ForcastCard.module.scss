@@ -6,7 +6,6 @@
 
   width: 300px;
   max-width: 300px;
-  max-height: 150px;
 
   border: 1px solid #e9ecef;
   border-radius: 10px;
@@ -25,12 +24,12 @@
   }
 
   @media (max-width: map-get($breakpoints, "md")) {
-    max-width: 250px;
+    max-width: 300px;
     transition: 1s ease-in-out;
   }
 
   @media (max-width: map-get($breakpoints, "sm")) {
-    max-width: 200px;
+    max-width: 250px;
     transition: 1s ease-in-out;
   }
 

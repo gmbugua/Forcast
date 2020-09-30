@@ -29,7 +29,14 @@
     width: 80%;
     align-self: center;
     justify-content: space-evenly;
-    @media (max-width: map-get($breakpoints, "sm")) {
+    margin-right: 20px;
+    > div:first-of-type {
+      margin-right: 50px;
+    }
+    @media (max-width: map-get($breakpoints, "lg")) {
+      > div:first-of-type {
+        margin-right: 0px;
+      }
       > div:not(:last-of-type) {
         margin-bottom: 30px;
       }
@@ -49,10 +56,10 @@
     align-self: center;
 
     > div:not(:last-of-type) {
-      margin-right: 30px;
+      margin-right: 10px;
     }
 
-    @media (max-width: map-get($breakpoints, "md")) {
+    @media (max-width: map-get($breakpoints, "lg")) {
       > div:not(:last-of-type) {
         margin-bottom: 30px;
         margin-right: 0px;

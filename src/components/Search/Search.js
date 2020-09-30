@@ -103,6 +103,16 @@ class Search extends React.Component {
   };
 
   render() {
+    const {
+      query,
+      city,
+      countryCode,
+      zipCode,
+      focused,
+      error,
+      foundCode,
+      validZip,
+    } = this.state;
     return (
       <div className={styles.container}>
         <div className={styles.content}>
@@ -110,8 +120,8 @@ class Search extends React.Component {
 
           <SearchBar
             name="name"
-            error={this.state.error.toString()}
-            value={this.state.query}
+            error={error.toString()}
+            value={query}
             placeholder={"Edit me!"}
             onChange={this.changeHandler}
             onFocus={this.focusHandler}
@@ -128,13 +138,13 @@ class Search extends React.Component {
             <br />
           </p>
 
-          {this.state.focused === true && (
+          {focused === true && (
             <ErrorText
-              countryCode={this.state.countryCode}
-              error={this.state.error}
-              foundCode={this.state.foundCode}
-              query={this.state.query}
-              validZip={this.state.validZip}
+              countryCode={countryCode}
+              error={error}
+              foundCode={foundCode}
+              query={query}
+              validZip={validZip}
             />
           )}
 
@@ -142,14 +152,14 @@ class Search extends React.Component {
             className={cx(
               "link",
               styles.link_spacing,
-              this.state.error === true && styles.link_disable
+              error === true && styles.link_disable
             )}
             to={{
               pathname: "/forcast",
               state: {
-                city: this.state.city,
-                code: this.state.countryCode,
-                zip: this.state.zipCode,
+                city: city,
+                code: countryCode,
+                zip: zipCode,
               },
             }}>
             <Button className={styles.searchBtn} type="submit" label="search" />

@@ -42,7 +42,9 @@ const parseHourlyForcastData = (forcastData) => {
 };
 
 const hourlyData = parseHourlyForcastData(FiveDay);
+console.log(hourlyData);
 console.log(Object.keys(hourlyData));
+console.log(Object.values(hourlyData));
 
 class WeatherForcast extends React.Component {
   constructor(props) {
@@ -132,11 +134,16 @@ class WeatherForcast extends React.Component {
           </div>
 
           <div>
-            <DayCard active={true} units={this.state.units} />
-            <DayCard units={this.state.units} />
-            <DayCard units={this.state.units} />
-            <DayCard units={this.state.units} />
-            <DayCard units={this.state.units} />
+            <DayCard
+              temperature={80}
+              day={"Wednesday"}
+              active={true}
+              units={this.state.units}
+            />
+            <DayCard day={"Wednesday"} units={this.state.units} />
+            <DayCard day={"Wednesday"} units={this.state.units} />
+            <DayCard day={"Wednesday"} units={this.state.units} />
+            <DayCard day={"Wednesday"} units={this.state.units} />
           </div>
         </div>
       </div>
