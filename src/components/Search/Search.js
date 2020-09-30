@@ -67,6 +67,7 @@ class Search extends React.Component {
       `city: ${city} countryCode: ${countryCode} zipCode: ${zipCode}`
     );
     countryCode = typeof countryCode === "undefined" ? "" : countryCode;
+    console.log(countryCode.indexOf(","));
     zipCode = typeof zipCode === "undefined" ? "" : zipCode;
 
     let findCode = findCountry(countryCode);

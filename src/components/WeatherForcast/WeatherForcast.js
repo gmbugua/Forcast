@@ -65,11 +65,11 @@ class WeatherForcast extends React.Component {
   /* Fetch Forcast Data */
 
   fetchForcast = async () => {
-    const { city, code } = this.state.location;
+    const { city, code, zip } = this.state.location;
 
     try {
       const dailyForcast = await fetch(
-        `https://community-open-weather-map.p.rapidapi.com/forecast?q=${city},${code.toLowerCase()}`,
+        `https://community-open-weather-map.p.rapidapi.com/forecast?q=${city},${code.toLowerCase()}&units=imperial&zip=${zip}`,
         {
           method: "GET",
           headers: {
