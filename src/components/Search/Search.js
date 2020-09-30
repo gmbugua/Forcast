@@ -19,6 +19,16 @@ const findCountry = (key) => {
   return false;
 };
 
+const validateZip = (key) => {
+  const numbers = /^[0-9]+$/;
+
+  if (key.length < 5 || key.match(numbers) === null) {
+    return false;
+  }
+
+  return true;
+};
+
 class Search extends React.Component {
   constructor() {
     super();
@@ -26,14 +36,21 @@ class Search extends React.Component {
       query: "",
       city: "",
       countryCode: "",
-      error: true,
+      zipCode: "",
       focused: false,
+      error: true,
       foundCode: false,
+      validZip: false,
     };
   }
 
-  validate = (query, countryCode, codeFound, error) => {
-    if (query.length <= 0 || countryCode.length !== 2 || codeFound === false) {
+  validate = (query, countryCode, codeFound, validZip, error) => {
+    if (
+      query.length <= 0 ||
+      countryCode.length !== 2 ||
+      codeFound === false ||
+      validZip === false
+    ) {
       error = true;
     } else {
       error = false;
@@ -45,17 +62,30 @@ class Search extends React.Component {
   changeHandler = (event) => {
     let query = event.target.value;
 
-    let [city, countryCode] = query.split(", ");
+    let [city, countryCode, zipCode] = query.split(", ");
+    console.log(
+      `city: ${city} countryCode: ${countryCode} zipCode: ${zipCode}`
+    );
     countryCode = typeof countryCode === "undefined" ? "" : countryCode;
+    zipCode = typeof zipCode === "undefined" ? "" : zipCode;
 
     let findCode = findCountry(countryCode);
+    let zipValidated = validateZip(zipCode);
 
     this.setState((state) => ({
       query: query,
       city: city,
       countryCode: countryCode,
+      zipCode: zipCode,
       foundCode: findCode,
-      error: this.validate(query, countryCode, findCode, state.error),
+      validZip: zipValidated,
+      error: this.validate(
+        query,
+        countryCode,
+        findCode,
+        zipValidated,
+        state.error
+      ),
     }));
   };
 
@@ -99,10 +129,11 @@ class Search extends React.Component {
 
           {this.state.focused === true && (
             <ErrorText
+              countryCode={this.state.countryCode}
               error={this.state.error}
               foundCode={this.state.foundCode}
               query={this.state.query}
-              countryCode={this.state.countryCode}
+              validZip={this.state.validZip}
             />
           )}
 
@@ -117,6 +148,7 @@ class Search extends React.Component {
               state: {
                 city: this.state.city,
                 code: this.state.countryCode,
+                zip: this.state.zipCode,
               },
             }}>
             <Button className={styles.searchBtn} type="submit" label="search" />

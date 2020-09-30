@@ -68,18 +68,7 @@ class WeatherForcast extends React.Component {
     const { city, code } = this.state.location;
 
     try {
-      const currentForcast = fetch(
-        `https://community-open-weather-map.p.rapidapi.com/weather?q=${city},${code.toLowerCase()}`,
-        {
-          method: "GET",
-          headers: {
-            "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-            "x-rapidapi-key": `${API_KEY}`,
-          },
-        }
-      );
-
-      const dailyForcast = fetch(
+      const dailyForcast = await fetch(
         `https://community-open-weather-map.p.rapidapi.com/forecast?q=${city},${code.toLowerCase()}`,
         {
           method: "GET",
@@ -90,12 +79,7 @@ class WeatherForcast extends React.Component {
         }
       );
 
-      const fetchResponses = await Promise.all([currentForcast, dailyForcast]);
-
-      const data = await Promise.all([
-        fetchResponses[0].json(),
-        fetchResponses[1].json(),
-      ]);
+      const data = await dailyForcast.json();
 
       console.log(data);
       this.setState({ data: data });
