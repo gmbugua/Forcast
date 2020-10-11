@@ -63,11 +63,11 @@ class Search extends React.Component {
     let query = event.target.value;
 
     let [city, countryCode, zipCode] = query.split(", ");
-    console.log(
-      `city: ${city} countryCode: ${countryCode} zipCode: ${zipCode}`
-    );
+    // console.log(
+    //   `city: ${city} countryCode: ${countryCode} zipCode: ${zipCode}`
+    // );
     countryCode = typeof countryCode === "undefined" ? "" : countryCode;
-    console.log(countryCode.indexOf(","));
+    // console.log(countryCode.indexOf(","));
     zipCode = typeof zipCode === "undefined" ? "" : zipCode;
 
     let findCode = findCountry(countryCode);

@@ -16,6 +16,18 @@ import { FiveDay } from "../../utility/sample_api_data";
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
+// Format Current Time
+const currDate = new Date();
+const formatTimeInstance = (instance) => {
+  let s = instance.toString();
+  return s.length < 2 ? "0" + s : s;
+};
+const currTime = `${formatTimeInstance(
+  currDate.getHours()
+)}:${formatTimeInstance(currDate.getMinutes())}:${formatTimeInstance(
+  currDate.getSeconds()
+)}`;
+
 const parseDate = (date) => {
   let parsedDate = date.split(" ");
   return parsedDate;
@@ -130,7 +142,10 @@ class WeatherForcast extends React.Component {
           </div>
 
           <div>
-            <TemperatureChart />
+            <TemperatureChart
+            // data={Object.values(hourlyData)[0].temps}
+            // timeLabels={Object.values(hourlyData)[0].times}
+            />
           </div>
 
           <div>
