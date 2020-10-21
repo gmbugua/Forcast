@@ -2,7 +2,8 @@ import React from "react";
 import cx from "classnames";
 import { Link } from "react-router-dom";
 
-import Icon from "../Icon/Icon";
+import Icon from "../Icon";
+import Load from "../Load";
 import Button from "../Button";
 import SearchBar from "./SearchBar";
 import ErrorText from "./ErrorText";

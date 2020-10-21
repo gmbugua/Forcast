@@ -13,15 +13,20 @@ import ForcastCard from "./ForcastCard";
 import styles from "./WeatherForcast.module.scss";
 
 import { FiveDay } from "../../utility/sample_api_data";
+import DaysOfTheWeek from "../../utility/WeekDays";
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 // Format Current Time
 const currDate = new Date();
+
 const formatTimeInstance = (instance) => {
   let s = instance.toString();
   return s.length < 2 ? "0" + s : s;
 };
+
+const currDay = `${DaysOfTheWeek[currDate.getDay()]}`;
+
 const currTime = `${formatTimeInstance(
   currDate.getHours()
 )}:${formatTimeInstance(currDate.getMinutes())}:${formatTimeInstance(
@@ -121,7 +126,12 @@ class WeatherForcast extends React.Component {
         <div className={styles.content}>
           <div>
             <div>
-              <ForcastHeader />
+              <ForcastHeader
+                city={`${this.state.location.city}`}
+                country={`${this.state.location.zip}`}
+                time={currTime}
+                day={currDay}
+              />
             </div>
             <div>
               <Button
@@ -143,8 +153,8 @@ class WeatherForcast extends React.Component {
 
           <div>
             <TemperatureChart
-            // data={Object.values(hourlyData)[0].temps}
-            // timeLabels={Object.values(hourlyData)[0].times}
+              data={Object.values(hourlyData)[0].temps}
+              timeLabels={Object.values(hourlyData)[0].times}
             />
           </div>
 
@@ -155,10 +165,36 @@ class WeatherForcast extends React.Component {
               active={true}
               units={this.state.units}
             />
-            <DayCard day={"Wednesday"} units={this.state.units} />
-            <DayCard day={"Wednesday"} units={this.state.units} />
-            <DayCard day={"Wednesday"} units={this.state.units} />
-            <DayCard day={"Wednesday"} units={this.state.units} />
+            <DayCard
+              temperature={80}
+              day={"Wednesday"}
+              active={false}
+              units={this.state.units}
+            />
+            <DayCard
+              temperature={80}
+              day={"Wednesday"}
+              active={false}
+              units={this.state.units}
+            />
+            <DayCard
+              temperature={80}
+              day={"Wednesday"}
+              active={false}
+              units={this.state.units}
+            />
+            <DayCard
+              temperature={80}
+              day={"Wednesday"}
+              active={false}
+              units={this.state.units}
+            />
+            <DayCard
+              temperature={80}
+              day={"Wednesday"}
+              active={false}
+              units={this.state.units}
+            />
           </div>
         </div>
       </div>
