@@ -6,12 +6,15 @@ import Icon from "../../Icon/";
 import styles from "./DayCard.module.scss";
 
 const DayCard = (props) => {
+
   return (
     <div
       className={cx(
         styles.container,
-        styles[props.active ? "active" : "inactive"]
-      )}>
+        styles[props.active() === true ? "active" : "inactive"]
+      )}
+      ref={props.forwardRef}
+      >
       <div>
         <p className={styles.day}>{props.day}</p>
       </div>
@@ -28,7 +31,7 @@ const DayCard = (props) => {
 };
 
 DayCard.propTypes = {
-  active: PropTypes.bool.isRequired,
+  active: PropTypes.func.isRequired,
   day: PropTypes.string.isRequired,
   iconName: PropTypes.string.isRequired,
   main: PropTypes.string.isRequired,
@@ -37,7 +40,7 @@ DayCard.propTypes = {
 };
 
 DayCard.defaultProps = {
-  active: false,
+  active: () => {},
   day: "Day",
   iconName: "800",
   main: "clear",

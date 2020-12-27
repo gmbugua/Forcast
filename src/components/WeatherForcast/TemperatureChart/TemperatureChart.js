@@ -7,17 +7,17 @@ import styles from "./TemperatureChart.module.scss";
 const options = {
   maintainAspectRatio: false,
   legend: {
-    display: false,
+    display: true,
   },
   padding: {
-    x: 10,
-    y: 10,
+    x: 30,
+    y: 20,
   },
   scales: {
     xAxes: [
       {
         gridLines: {
-          display: false,
+          display: true,
         },
       },
     ],
@@ -52,16 +52,16 @@ const TemperatureChart = (props) => {
         pointBorderColor: "rgb(20, 54, 66)",
         pointBackgroundColor: "rgba(15, 139, 141)",
         hoverBackgroundColor: "rgba(236, 154, 41)",
-        pointRadius: 5,
+        pointRadius: 7,
 
         data: props.data,
       },
     ],
   };
   return (
-    <div className={styles.container}>
+    <article className={styles.container}>
       <Line data={chartData} options={options} />
-    </div>
+    </article>
   );
 };
 

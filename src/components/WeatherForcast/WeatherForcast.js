@@ -15,27 +15,36 @@ import styles from "./WeatherForcast.module.scss";
 import { FiveDay } from "../../utility/sample_api_data";
 import DaysOfTheWeek from "../../utility/WeekDays";
 
-const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 // Format Current Time
-const currDate = new Date();
+const date = new Date();
 
 const formatTimeInstance = (instance) => {
   let s = instance.toString();
   return s.length < 2 ? "0" + s : s;
 };
 
-const currDay = `${DaysOfTheWeek[currDate.getDay()]}`;
-
-const currTime = `${formatTimeInstance(
-  currDate.getHours()
-)}:${formatTimeInstance(currDate.getMinutes())}:${formatTimeInstance(
-  currDate.getSeconds()
-)}`;
-
 const parseDate = (date) => {
   let parsedDate = date.split(" ");
   return parsedDate;
+};
+
+const currDay = `${DaysOfTheWeek[date.getDay()]}`;
+
+const currTime = `${formatTimeInstance(date.getHours())}:${formatTimeInstance(
+  date.getMinutes()
+)}:${formatTimeInstance(date.getSeconds())}`;
+
+const getDayIndex = (parsedDate) => {
+  // extract year,month, day from key
+  let splitDate = parsedDate.split("-");
+
+  // create date object
+  let tempDay = new Date(splitDate[0], splitDate[1], splitDate[2]);
+
+  // return day index
+  return tempDay.getDay();
 };
 
 const parseHourlyForcastData = (forcastData) => {
@@ -45,30 +54,38 @@ const parseHourlyForcastData = (forcastData) => {
   // First add the dates to the mapping
   forcastData.forEach((segment) => {
     let date = parseDate(segment?.dt_txt);
-    chartMapping[date[0]] = { times: [], temps: [] };
+    let dayIndex = getDayIndex(date[0]);
+    chartMapping[dayIndex] = {
+      times: [],
+      temps: [],
+      name: DaysOfTheWeek[dayIndex],
+    };
   });
 
   // Second map relevant chart data objects to those dates
   forcastData.forEach((segment) => {
     let date = parseDate(segment?.dt_txt);
-    chartMapping[date[0]].times.push(date[1]);
-    chartMapping[date[0]].temps.push(segment?.main.temp);
+    chartMapping[getDayIndex(date[0])].times.push(date[1]);
+    chartMapping[getDayIndex(date[0])].temps.push(segment?.main.temp);
   });
 
   return chartMapping;
 };
 
 const hourlyData = parseHourlyForcastData(FiveDay);
+
 console.log(hourlyData);
-console.log(Object.keys(hourlyData));
-console.log(Object.values(hourlyData));
+
+// console.log(Object.keys(hourlyData)[0]);
+// console.log(Object.values(hourlyData)[0]);
 
 class WeatherForcast extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currDay: "",
-      data: [],
+      currDay: 0,
+      // data: [],
+      data: hourlyData,
       location: this.props.location.state,
       fetchError: false,
       units: "Fahrenheit",
@@ -76,48 +93,57 @@ class WeatherForcast extends React.Component {
   }
 
   /* Life Cycle */
-
   componentDidMount() {
     // this.fetchForcast();
   }
 
   /* Fetch Forcast Data */
-
   fetchForcast = async () => {
-    const { city, code, zip } = this.state.location;
-
+    let { city, code, zip } = this.state.location;
     try {
       const dailyForcast = await fetch(
-        `https://community-open-weather-map.p.rapidapi.com/forecast?q=${city},${code.toLowerCase()}&units=imperial&zip=${zip}`,
-        {
-          method: "GET",
-          headers: {
-            "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-            "x-rapidapi-key": `${API_KEY}`,
-          },
-        }
+        `http://api.openweathermap.org/data/2.5/forecast?zip=${zip},${code}&appid=${API_KEY}&mode=json&units=imperial`
       );
 
       const data = await dailyForcast.json();
 
-      console.log(data);
-      this.setState({ data: data });
+      // console.log(data.list);
+      // console.log(parseHourlyForcastData(data.list));
+      this.setState({ data: parseHourlyForcastData(data.list) });
+      this.setState({ currDay: Object.keys(this.state.data)[0] });
+      console.log(this.state.data);
     } catch (error) {
       console.log(error);
       this.setState({ fetchError: true });
     }
   };
 
-  /* handles */
-
+  /* Handle */
   handleSwitchUnits = () => {
     if (this.state.units === "Fahrenheit") {
       this.setState({ units: "Celcius" });
-      console.log("rerender");
     } else {
       this.setState({ units: "Fahrenheit" });
     }
   };
+
+  handleCurrentDay = (index) => {
+    if (this.state.currDay !== Number.parseInt(index)) {
+      this.setState({ currDay: Number.parseInt(index) });
+    }
+  };
+
+  handleActive = (index) => {
+    if (this.state.currDay === Number.parseInt(index)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  simulateClick(e) {
+    e.click();
+  }
 
   render() {
     return (
@@ -153,48 +179,93 @@ class WeatherForcast extends React.Component {
 
           <div>
             <TemperatureChart
-              data={Object.values(hourlyData)[0].temps}
-              timeLabels={Object.values(hourlyData)[0].times}
+              data={Object.values(this.state.data)[this.state.currDay]?.temps}
+              timeLabels={
+                Object.values(this.state.data)[this.state.currDay]?.times
+              }
             />
           </div>
 
           <div>
-            <DayCard
-              temperature={80}
-              day={"Wednesday"}
-              active={true}
-              units={this.state.units}
-            />
-            <DayCard
-              temperature={80}
-              day={"Wednesday"}
-              active={false}
-              units={this.state.units}
-            />
-            <DayCard
-              temperature={80}
-              day={"Wednesday"}
-              active={false}
-              units={this.state.units}
-            />
-            <DayCard
-              temperature={80}
-              day={"Wednesday"}
-              active={false}
-              units={this.state.units}
-            />
-            <DayCard
-              temperature={80}
-              day={"Wednesday"}
-              active={false}
-              units={this.state.units}
-            />
-            <DayCard
-              temperature={80}
-              day={"Wednesday"}
-              active={false}
-              units={this.state.units}
-            />
+            <div
+              onClick={() =>
+                this.handleCurrentDay(Object.keys(this.state.data)[0])
+              }>
+              <DayCard
+                temperature={80}
+                day={"Wednesday"}
+                active={() => {
+                  return this.handleActive(Object.keys(this.state.data)[0]);
+                }}
+                units={this.state.units}
+              />
+            </div>
+
+            <div
+              onClick={() =>
+                this.handleCurrentDay(Object.keys(this.state.data)[1])
+              }>
+              <DayCard
+                temperature={80}
+                day={"Wednesday"}
+                active={() => {
+                  return this.handleActive(Object.keys(this.state.data)[1]);
+                }}
+                units={this.state.units}
+              />
+            </div>
+            <div
+              onClick={() =>
+                this.handleCurrentDay(Object.keys(this.state.data)[2])
+              }>
+              <DayCard
+                temperature={80}
+                day={"Wednesday"}
+                active={() => {
+                  return this.handleActive(Object.keys(this.state.data)[2]);
+                }}
+                units={this.state.units}
+              />
+            </div>
+            <div
+              onClick={() =>
+                this.handleCurrentDay(Object.keys(this.state.data)[3])
+              }>
+              <DayCard
+                temperature={80}
+                day={"Wednesday"}
+                active={() => {
+                  return this.handleActive(Object.keys(this.state.data)[3]);
+                }}
+                units={this.state.units}
+              />
+            </div>
+            <div
+              onClick={() =>
+                this.handleCurrentDay(Object.keys(this.state.data)[4])
+              }>
+              <DayCard
+                temperature={80}
+                day={"Wednesday"}
+                active={() => {
+                  return this.handleActive(Object.keys(this.state.data)[4]);
+                }}
+                units={this.state.units}
+              />
+            </div>
+            <div
+              onClick={() =>
+                this.handleCurrentDay(Object.keys(this.state.data)[5])
+              }>
+              <DayCard
+                temperature={80}
+                day={"Wednesday"}
+                active={() => {
+                  return this.handleActive(Object.keys(this.state.data)[5]);
+                }}
+                units={this.state.units}
+              />
+            </div>
           </div>
         </div>
       </div>
