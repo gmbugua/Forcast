@@ -17,7 +17,7 @@ const ForcastCard = (props) => {
 
       <div>
         <p>visbility</p>
-        <p>{props.visbility} m</p>
+        <p>{props.visibility / 1000} km</p>
       </div>
     </div>
   );
@@ -26,13 +26,13 @@ const ForcastCard = (props) => {
 ForcastCard.propTypes = {
   wind: PropTypes.number.isRequired,
   humidity: PropTypes.number.isRequired,
-  visbility: PropTypes.number.isRequired,
+  visibility: PropTypes.number.isRequired,
 };
 
 ForcastCard.defaultProps = {
   wind: 2,
   humidity: 2,
-  visbility: 93,
+  visibility: 93,
 };
 
 export default ForcastCard;

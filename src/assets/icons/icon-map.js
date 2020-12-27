@@ -112,6 +112,7 @@ const Icons = {
     hot: Hot,
     cold: Cold,
   },
+  
 };
 
 export default Icons;

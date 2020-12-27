@@ -24,6 +24,7 @@ TemperatureHeader.propTypes = {
   units: PropTypes.string.isRequired,
   iconName: PropTypes.string.isRequired,
   temperature: PropTypes.number.isRequired,
+  main: PropTypes.string.isRequired
 };
 
 TemperatureHeader.defaultProps = {
