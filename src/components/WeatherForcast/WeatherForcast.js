@@ -103,6 +103,26 @@ const parseHourlyForcastData = (forcastData) => {
 
 const hourlyData = parseHourlyForcastData(FiveDay);
 
+
+const convert_temp = (unit_state, value) => {
+  let temp = value;
+  if (unit_state === "C") {
+    temp = Math.floor(value * (9/5) + 32);
+  } else {
+    temp = Math.floor((value - 32) * (5/9));
+  }
+  return temp;
+}
+
+const convert_temps = (unit_state, datum) => {
+  for (let i = 0; i < 6; i++) {
+    let temps = Object.values(datum)[i]?.temps;
+    for (let i = 0; i < temps.length; i++) {
+      temps[i] = convert_temp(unit_state, temps[i]);
+    }
+  }
+}
+
 // console.log(hourlyData);
 // console.log(Object.keys(hourlyData)[0]);
 // console.log(Object.values(hourlyData)[0]);
@@ -150,8 +170,12 @@ class WeatherForcast extends React.Component {
   /* Handle */
   handleSwitchUnits = () => {
     if (this.state.units === "Fahrenheit") {
+      console.log(this.state.data);
+      convert_temps("F", this.state.data);
       this.setState({ units: "Celcius" });
     } else {
+      console.log(this.state.data);
+      convert_temps("C", this.state.data);
       this.setState({ units: "Fahrenheit" });
     }
   };
