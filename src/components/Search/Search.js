@@ -130,9 +130,9 @@ class Search extends React.Component {
           />
 
           <p className={styles.helperText}>
-            Search by your City and 2 digit Country Code.
+            Search by your City, 2 digit Country Code and Zip Code.
             <br />
-            e.g. Santa Rosa, US or London, GB{" "}
+            e.g. Santa Rosa, US, 95404{" "}
             <span role="img" aria-label="winky-face">
               😉
             </span>{" "}
