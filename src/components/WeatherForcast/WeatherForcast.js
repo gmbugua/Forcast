@@ -15,7 +15,8 @@ import styles from "./WeatherForcast.module.scss";
 import { FiveDay } from "../../utility/sample_api_data";
 import DaysOfTheWeek from "../../utility/WeekDays";
 
-const API_KEY = process.env.REACT_APP_API_KEY;
+// const API_KEY = process.env.REACT_APP_API_KEY;
+const API_KEY = "85e0f16b7a77d3633ed4216933891421";
 
 // Format Current Time
 const date = new Date();
@@ -128,7 +129,7 @@ class WeatherForcast extends React.Component {
     let { code, zip } = this.state.location;
     try {
       const dailyForcast = await fetch(
-        `http://api.openweathermap.org/data/2.5/forecast?zip=${zip},${code}&appid=${API_KEY}&mode=json&units=imperial`
+        `https://api.openweathermap.org/data/2.5/forecast?zip=${zip},${code}&appid=${API_KEY}&mode=json&units=imperial`
       );
 
       const data = await dailyForcast.json();
