@@ -15,8 +15,7 @@ import styles from "./WeatherForcast.module.scss";
 import { FiveDay } from "../../utility/sample_api_data";
 import DaysOfTheWeek from "../../utility/WeekDays";
 
-// const API_KEY = process.env.REACT_APP_API_KEY;
-const API_KEY = "85e0f16b7a77d3633ed4216933891421";
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 // Format Current Time
 const date = new Date();
